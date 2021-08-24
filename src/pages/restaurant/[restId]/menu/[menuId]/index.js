@@ -16,7 +16,7 @@ const MenuList = () => {
           <div className='module-spacer--small' />
           <div className='module-spacer--small' />
           <Link href={`/restaurant/${restId}/menu/${menuId}/edit`}>
-            <a class="inline-block align-baseline font-bold text-sm text-purple-500 hover:text-purple-800">メニューを編集</a>
+            <a className="inline-block align-baseline font-bold text-sm text-purple-500 hover:text-purple-800">メニューを編集</a>
           </Link>
           <div className='module-spacer--small' />
           <div>
@@ -29,7 +29,7 @@ const MenuList = () => {
           </div>
           <div className='module-spacer--small' />
           <Link href={`/restaurant/${restId}/menu`}>
-            <a class="inline-block align-baseline font-bold text-sm text-purple-500 hover:text-purple-800">メニューページ</a>
+            <a className="inline-block align-baseline font-bold text-sm text-purple-500 hover:text-purple-800">メニューページ</a>
           </Link>
         </section>
       </div>

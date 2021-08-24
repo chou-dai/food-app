@@ -15,7 +15,7 @@ const RestaurantDetail = () => {
         <div className='module-spacer--small' />
         <div className='module-spacer--small' />
         <Link href={`/restaurant/${restId}/edit`}>
-          <a class="inline-block align-baseline font-bold text-sm text-purple-500 hover:text-purple-800">店舗情報を編集</a>
+          <a className="inline-block align-baseline font-bold text-sm text-purple-500 hover:text-purple-800">店舗情報を編集</a>
         </Link>
         <div className='module-spacer--small' />
         <div>
@@ -28,7 +28,7 @@ const RestaurantDetail = () => {
         </div>
         <div className='module-spacer--small' />
         <Link href="/restaurant">
-          <a class="inline-block align-baseline font-bold text-sm text-purple-500 hover:text-purple-800">店舗一覧へ</a>
+          <a className="inline-block align-baseline font-bold text-sm text-purple-500 hover:text-purple-800">店舗一覧へ</a>
         </Link>
       </section>
     </div>

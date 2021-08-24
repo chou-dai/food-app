@@ -18,7 +18,7 @@ const MenuList = () => {
             pathname: `/restaurant/${restId}/menu/[menuId]`,
             query: {menuId: 2}
           }}>
-            <a class="inline-block align-baseline font-bold text-sm text-purple-500 hover:text-purple-800">メニュー詳細へ</a>
+            <a className="inline-block align-baseline font-bold text-sm text-purple-500 hover:text-purple-800">メニュー詳細へ</a>
           </Link>
           <div className='module-spacer--small' />
           <div>
@@ -31,7 +31,7 @@ const MenuList = () => {
           </div>
           <div className='module-spacer--small' />
           <Link href={`/restaurant/${restId}`}>
-            <a class="inline-block align-baseline font-bold text-sm text-purple-500 hover:text-purple-800">店舗詳細へ</a>
+            <a className="inline-block align-baseline font-bold text-sm text-purple-500 hover:text-purple-800">店舗詳細へ</a>
           </Link>
         </section>
       </div>
