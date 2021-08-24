@@ -1,11 +1,10 @@
-
 import Link from 'next/link'
-
 import { useRouter } from 'next/router'
 import React from 'react'
 
 const RestaurantEdit = () => {
   const router = useRouter();
+  const {restId} = router.query;
   
   return (
     <div>
@@ -32,27 +31,17 @@ const RestaurantEdit = () => {
               <button
                 class="bg-purple-600 hover:bg-purple-100 text-white hover:text-purple-600 font-bold border border-purple-600 py-2 px-9 rounded focus:outline-none focus:shadow-outline"
                 type="button"
-                onClick={() => router.push('/restaurant')}
+                onClick={() => router.push(`/restaurant/${restId}`)}
               >
                 保存
               </button>
-              <Link href="/restaurant">
-                <a class="inline-block align-baseline font-bold text-sm text-purple-500 hover:text-purple-800">店舗一覧へ</a>
+              <Link href={`/restaurant/${restId}`}>
+                <a class="inline-block align-baseline font-bold text-sm text-purple-500 hover:text-purple-800">店舗詳細へ</a>
               </Link>
             </div>
           </form>
         </div>
         <div>
-        <h1>投稿・編集</h1>
-        <div className='module-spacer--small' />
-        <div className='module-spacer--small' />
-        <div>
-          <button
-            className="bg-purple-600 hover:bg-purple-100 text-white hover:text-purple-600 font-bold py-3.5 px-20 border border-purple-600 rounded"
-            onClick={() => router.push('/restaurant')}
-          >
-            保存
-          </button>
         </div>
       </section>
     </div>
