@@ -4,6 +4,7 @@ import React from 'react'
 
 const RestaurantEdit = () => {
   const router = useRouter();
+  const {restId} = router.query;
   
   return (
     <div>
@@ -30,12 +31,12 @@ const RestaurantEdit = () => {
               <button
                 class="bg-purple-600 hover:bg-purple-100 text-white hover:text-purple-600 font-bold border border-purple-600 py-2 px-9 rounded focus:outline-none focus:shadow-outline"
                 type="button"
-                onClick={() => router.push('/restaurant')}
+                onClick={() => router.push(`/restaurant/${restId}`)}
               >
                 保存
               </button>
-              <Link href="/restaurant">
-                <a class="inline-block align-baseline font-bold text-sm text-purple-500 hover:text-purple-800">店舗一覧へ</a>
+              <Link href={`/restaurant/${restId}`}>
+                <a class="inline-block align-baseline font-bold text-sm text-purple-500 hover:text-purple-800">店舗詳細へ</a>
               </Link>
             </div>
           </form>
