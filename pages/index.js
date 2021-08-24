@@ -2,9 +2,9 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import Link from 'next/link'
-import firebase from '../firebase/index'
+import initFirebase from '../firebase/index'
 
-firebase()
+initFirebase()
 
 export default function Home() {
   return (

@@ -6,8 +6,8 @@ import 'firebase/functions';
 import { firebaseConfig } from './config';
 
 export default function initFirebase() {
-  if(!firebase.app.length) {
+  if(!firebase.apps.length) {
     firebase.initializeApp(firebaseConfig);
+    console.log("Firebase was successfully init.")
   }
-  console.log("Firebase was successfully init.")
 }
