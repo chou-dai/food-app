@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Windows10の場合？ */
 @import "~tailwindcss/base";
 @import "~tailwindcss/components";
 @import "~tailwindcss/utilities";
