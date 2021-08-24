@@ -11,7 +11,7 @@ const RestaurantDetail = () => {
       <section className='c-section-wrapin'>
         <div className='module-spacer--small' />
         <div className='module-spacer--small' />
-        <h1>店舗: {restId}</h1>
+        <h1> 店舗: {restId}</h1>
         <div className='module-spacer--small' />
         <div className='module-spacer--small' />
         <Link href={`/restaurant/${restId}/edit`}>
