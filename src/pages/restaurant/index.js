@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'
 import React from 'react'
-import Link from 'next/link';
+import { RestaurantCard } from '../../components/Restaurants';
 
 const RestaurantList = () => {
   const router = useRouter();
@@ -13,13 +13,14 @@ const RestaurantList = () => {
         <h1>店舗一覧ページ</h1>
         <div className='module-spacer--small' />
         <div className='module-spacer--small' />
+        <div className='justify-center'>
+          <div className='flex flex-wrap'>
+            <RestaurantCard restId={1} />
+            <RestaurantCard restId={2} />
+            <RestaurantCard restId={3} />
+          </div>
+        </div>
         <div>
-          <Link href={{
-            pathname: "/restaurant/[restId]",
-            query: {restId: 1}
-          }}>
-            <a className="inline-block align-baseline font-bold text-sm text-purple-500 hover:text-purple-800">店舗１へ</a>
-          </Link>
         </div>
         <div className='module-spacer--small' />
         <div>
@@ -30,6 +31,8 @@ const RestaurantList = () => {
             店舗を追加
           </button>
         </div>
+        <div className='module-spacer--small' />
+        <div className='module-spacer--small' />
       </section>
     </div>
   )

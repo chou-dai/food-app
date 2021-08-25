@@ -19,7 +19,7 @@ const MenuList = () => {
             <a className="inline-block align-baseline font-bold text-sm text-purple-500 hover:text-purple-800">メニューを編集</a>
           </Link>
           <div className='module-spacer--small' />
-          <div>
+          {/* <div>
             <button
               className="bg-purple-600 hover:bg-purple-100 text-white hover:text-purple-600 font-bold py-3.5 px-20 border border-purple-600 rounded"
               onClick={() => router.push(`/restaurant/${restId}/menu/edit`)}
@@ -27,7 +27,7 @@ const MenuList = () => {
               メニューを追加
             </button>
           </div>
-          <div className='module-spacer--small' />
+          <div className='module-spacer--small' /> */}
           <Link href={`/restaurant/${restId}/menu`}>
             <a className="inline-block align-baseline font-bold text-sm text-purple-500 hover:text-purple-800">メニューページ</a>
           </Link>

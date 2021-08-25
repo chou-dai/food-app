@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router'
 import React from 'react'
 import Link from 'next/link';
+import { MenuCard } from '../../../../components/Menus'
 
 const MenuList = () => {
   const router = useRouter();
@@ -14,12 +15,14 @@ const MenuList = () => {
           <h1>店舗: {restId}　メニューページ</h1>
           <div className='module-spacer--small' />
           <div className='module-spacer--small' />
-          <Link href={{
-            pathname: `/restaurant/${restId}/menu/[menuId]`,
-            query: {menuId: 2}
-          }}>
-            <a className="inline-block align-baseline font-bold text-sm text-purple-500 hover:text-purple-800">メニュー詳細へ</a>
-          </Link>
+          <div className='justify-center'>
+            <div className='flex flex-wrap'>
+              <MenuCard restId={restId} menuId={1} />
+              <MenuCard restId={restId} menuId={2} />
+              <MenuCard restId={restId} menuId={3} />
+              <MenuCard restId={restId} menuId={4} />
+            </div>
+          </div>
           <div className='module-spacer--small' />
           <div>
             <button
