@@ -5,7 +5,6 @@ import { db } from '../../firebase';
 
 const RestaurantList = ({restdata}) => {
   const router = useRouter();
-  console.log(restdata);
   
   return (
     <div>
