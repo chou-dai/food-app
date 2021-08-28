@@ -1,9 +1,11 @@
 import { useRouter } from 'next/router'
 import React from 'react'
 import { RestaurantCard } from '../../components/Restaurants';
+import { db } from '../../firebase';
 
-const RestaurantList = () => {
+const RestaurantList = ({restdata}) => {
   const router = useRouter();
+  console.log(restdata);
   
   return (
     <div>
@@ -15,9 +17,11 @@ const RestaurantList = () => {
         <div className='module-spacer--small' />
         <div className='justify-center'>
           <div className='flex flex-wrap'>
-            <RestaurantCard restId={1} />
-            <RestaurantCard restId={2} />
-            <RestaurantCard restId={3} />
+            {restdata.length > 0 && (
+              restdata.map(data => (
+                <RestaurantCard key={data.id} restId={data.id} restName={data.name} />
+              ))
+            )}
           </div>
         </div>
         <div>
@@ -36,6 +40,22 @@ const RestaurantList = () => {
       </section>
     </div>
   )
+}
+
+export const getStaticProps = async () => {
+  const restdata = [];
+  const ref = await db.collection('restaurants').get()
+    .then(snapshots => {
+      snapshots.forEach(snapshot => {
+        const id = snapshot.data();
+        restdata.push(id)
+      })
+    })
+  return {
+    props: {
+      restdata,
+    }
+  }
 }
 
 export default RestaurantList

@@ -15,7 +15,7 @@ const RestaurantCard = (props) => {
             <Image src={NoImage} layout="fill" objectFit="cover" />
           </div>
           <div className="px-1 center pb-2 sm:py-4">
-            <div className="text-gray-800 font-bold text-xl mb-1">マクドナルド</div>
+            <div className="text-gray-800 font-bold text-xl mb-1">{props.restName}</div>
             <p className="text-gray-700 text-base">
               住所
             </p>
