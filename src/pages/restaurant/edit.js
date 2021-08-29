@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React, { useCallback, useState } from 'react'
+import { ImageArea } from '../../components/Uikit'
 import { saveRestaurant } from '../../lib/restaurantLib';
 
 const RestaurantEdit = () => {
@@ -9,6 +10,7 @@ const RestaurantEdit = () => {
 
   const [name, setName] = useState(""),
         [address, setAddress] = useState(""),
+        [images, setImages] = useState([]),
         [message, setMessage] = useState("");
 
   const inputName = useCallback((event) => {
@@ -37,6 +39,9 @@ const RestaurantEdit = () => {
         <div className='module-spacer--small' />
         <div className="w-full max-w-xs center">
           <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+            <div className="mb-4">
+              <ImageArea images={images} setImages={setImages} />
+            </div>
             <div className="mb-4">
               <label className="block text-gray-700 text-sm font-bold mb-2">
                 店舗名※
@@ -76,8 +81,8 @@ const RestaurantEdit = () => {
             </div>
           </form>
         </div>
-        <div>
-        </div>
+        <div className='module-spacer--small' />
+        <div className='module-spacer--small' />
       </section>
     </div>
   )
