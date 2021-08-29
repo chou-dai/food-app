@@ -1,8 +1,10 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React, { useCallback, useState } from 'react'
+import { saveRestaurant } from '../../lib/restaurantLib';
 
 const RestaurantEdit = () => {
+  const id = '';
   const router = useRouter();
 
   const [name, setName] = useState(""),
@@ -17,13 +19,12 @@ const RestaurantEdit = () => {
     setAddress(event.target.value)
   }, [setAddress])
 
-  const save = () => {
-    console.log(name);
-    console.log(address);
+  const save = async() => {
     if(name === ''){
-      setMessage('店舗名を入力してください')
+      setMessage('店舗名を入力してください');
       return;
     }
+    await saveRestaurant(id, name, address);
     router.push('/restaurant')
   }
   
