@@ -42,7 +42,7 @@ const RestaurantList = ({restdata}) => {
   )
 }
 
-export const getStaticProps = async () => {
+export const getServerSideProps = async () => {
   const restdata = [];
   const ref = await db.collection('restaurants').get()
     .then(snapshots => {
