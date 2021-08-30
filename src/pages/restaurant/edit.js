@@ -26,7 +26,7 @@ const RestaurantEdit = () => {
       setMessage('店舗名を入力してください');
       return;
     }
-    await saveRestaurant(id, name, address);
+    await saveRestaurant(id, name, address, images);
     router.push('/restaurant')
   }
   

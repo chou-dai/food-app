@@ -5,7 +5,6 @@ import { db } from '../../firebase';
 
 const RestaurantList = ({restdata}) => {
   const router = useRouter();
-  console.log(restdata);
   
   return (
     <div>
@@ -27,7 +26,10 @@ const RestaurantList = ({restdata}) => {
           <div className='flex flex-wrap'>
             {restdata.length > 0 && (
               restdata.map(data => (
-                <RestaurantCard key={data.id} restId={data.id} restName={data.name} />
+                <RestaurantCard
+                  key={data.id} restId={data.id} restName={data.name}
+                  images={data.images}
+                />
               ))
             )}
           </div>
