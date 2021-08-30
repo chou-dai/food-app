@@ -4,6 +4,17 @@ import ImagePreview from './ImagePreview';
 
 const ImageArea = (props) => {
 
+  const deleteImage = useCallback(async(id) => {
+    const ret = window.confirm('この画像を削除しますか？')
+    if (!ret) {
+      return false
+    } else {
+      const newImages = props.images.filter(image => image.id !== id)
+      props.setImages(newImages);
+      return storage.ref('images').child(id).delete()
+    }
+  }, [props.images])
+
   const uploadImage = useCallback((event) => {
     const file = event.target.files;
     let blob = new Blob(file, {type: 'image/jpeg'});
@@ -28,7 +39,7 @@ const ImageArea = (props) => {
       <div className='justify-center'>
           <div className='flex flex-wrap'>
             {props.images.length > 0 && (
-              props.images.map(image => <ImagePreview id={image.id} path={image.path} key={image.id} />)
+              props.images.map(image => <ImagePreview delete={deleteImage} id={image.id} path={image.path} key={image.id} />)
             )}
           </div>
         </div>
