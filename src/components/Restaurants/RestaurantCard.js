@@ -13,14 +13,11 @@ const RestaurantCard = (props) => {
         query: {restId: props.restId}
       }}>
         <div className="rounded-md overflow-hidden shadow-lg hover:bg-gray-100 bg-white">
-          <div className="p-1.5" style={{ position: 'relative', width: '100%', height: '150px' }}>
-            <img src={images[0].path} className="shadow object-cover h-36 w-full rounded" />
+          <div className="p-1.5">
+            <img src={images[0].path} className="shadow object-cover h-24 sm:h-32 w-full rounded" />
           </div>
-          <div className="px-1 center pb-2 sm:py-4">
-            <div className="text-gray-800 font-bold text-xl mb-1">{props.restName}</div>
-            <p className="text-gray-700 text-base">
-              住所
-            </p>
+          <div className="px-1 center pb-1.5 sm:py-4">
+            <div className="text-gray-800 font-bold text-xl">{props.restName}</div>
           </div>
         </div>
       </Link>
