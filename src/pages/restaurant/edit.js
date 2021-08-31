@@ -1,7 +1,7 @@
-import Link from 'next/link'
-import { useRouter } from 'next/router'
-import React, { useCallback, useState } from 'react'
-import { ImageArea } from '../../components/Uikit'
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import React, { useCallback, useState } from 'react';
+import { ImageArea } from '../../components/Edit';
 import { saveRestaurant } from '../../lib/restaurantLib';
 
 const RestaurantEdit = () => {
@@ -27,7 +27,7 @@ const RestaurantEdit = () => {
       return;
     }
     await saveRestaurant(id, name, address, images);
-    router.push('/restaurant')
+    router.push('/restaurant');
   }
   
   return (

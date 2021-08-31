@@ -3,7 +3,6 @@ import NoImage from '../../styles/img/src/no_image.jpg'
 import Link from 'next/link'
 
 const RestaurantCard = (props) => {
-
   const images = (props.images.length > 0) ? props.images : [{path: NoImage}]
 
   return (
