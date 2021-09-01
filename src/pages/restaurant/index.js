@@ -28,7 +28,7 @@ const RestaurantList = ({ data }) => {
               data.map(rest => (
                 <RestaurantCard
                   key={rest.id} restId={rest.id} restName={rest.name}
-                  images={rest.images}
+                  images={rest.images} noImage={rest.noImage}
                 />
               ))
             )}

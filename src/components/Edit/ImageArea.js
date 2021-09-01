@@ -3,6 +3,7 @@ import { storage } from '../../firebase';
 import ImagePreview from './ImagePreview';
 
 const ImageArea = (props) => {
+  const restId = props.restId;
 
   const deleteImage = useCallback(async(id) => {
     const ret = window.confirm('この画像を削除しますか？')
@@ -11,7 +12,7 @@ const ImageArea = (props) => {
     } else {
       const newImages = props.images.filter(image => image.id !== id)
       props.setImages(newImages);
-      return storage.ref('images').child(id).delete()
+      return storage.ref('images').child(restId).child(id).delete()
     }
   }, [props.images])
 
@@ -23,7 +24,7 @@ const ImageArea = (props) => {
     const N=16;
     const fileName = Array.from(crypto.getRandomValues(new Uint32Array(N))).map((n)=>S[n%S.length]).join('')
 
-    const uploadRef = storage.ref('images').child(fileName);
+    const uploadRef = storage.ref('images').child(restId).child(fileName);
     const uploadTask = uploadRef.put(blob);
 
     uploadTask.then(() => {

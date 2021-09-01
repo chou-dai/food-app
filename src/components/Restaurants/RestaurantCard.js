@@ -1,9 +1,8 @@
 import React from 'react'
-import NoImage from '../../styles/img/src/no_image.jpg'
 import Link from 'next/link'
 
 const RestaurantCard = (props) => {
-  const images = (props.images.length > 0) ? props.images : [{path: NoImage}]
+  const images = (props.images.length > 0) ? props.images : [props.noImage];
 
   return (
     <div className="p-1 w-1/2 sm:p-2 sm:w-1/3 md:w-1/4 lg:w-1/5">

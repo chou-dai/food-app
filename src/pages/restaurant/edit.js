@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useCallback, useState } from 'react';
 import { ImageArea } from '../../components/Edit';
-import { saveRestaurant } from '../../lib/restaurantLib';
+import { firstSaveRestaurant } from '../../lib/restaurantLib';
 
 const RestaurantEdit = () => {
   const id = '';
@@ -10,8 +10,14 @@ const RestaurantEdit = () => {
 
   const [name, setName] = useState(""),
         [address, setAddress] = useState(""),
-        [images, setImages] = useState([]),
         [message, setMessage] = useState("");
+
+  const images = [];
+
+  const noImage = {
+    id: "7dndNuKZZobih9ke",
+    path: "https://firebasestorage.googleapis.com/v0/b/food-app-37cd5.appspot.com/o/images%2FnoImage%2F7dndNuKZZobih9ke?alt=media&token=5244687c-73d4-45ad-b550-7aec8fac8430"
+  }
 
   const inputName = useCallback((event) => {
     setName(event.target.value)
@@ -21,12 +27,14 @@ const RestaurantEdit = () => {
     setAddress(event.target.value)
   }, [setAddress])
 
+  
+
   const save = async() => {
     if(name === ''){
       setMessage('店舗名を入力してください');
       return;
     }
-    await saveRestaurant(id, name, address, images);
+    await firstSaveRestaurant(id, name, address, images, noImage);
     router.push('/restaurant');
   }
   
@@ -39,9 +47,6 @@ const RestaurantEdit = () => {
         <div className='module-spacer--small' />
         <div className="w-full max-w-xs center">
           <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-            <div className="mb-4">
-              <ImageArea images={images} setImages={setImages} />
-            </div>
             <div className="mb-4">
               <label className="block text-gray-700 text-sm font-bold mb-2">
                 店舗名※

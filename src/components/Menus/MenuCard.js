@@ -1,5 +1,4 @@
 import React from 'react'
-import NoImage from '../../styles/img/src/no_image.jpg'
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -12,7 +11,7 @@ const MenuCard = (props) => {
       }}>
         <div className=" rounded-md overflow-hidden shadow-lg hover:bg-gray-200 bg-white">
           <div style={{ position: 'relative', width: '100%', height: '150px' }}>
-            <Image src={NoImage} layout="fill" objectFit="cover" />
+            {/* <Image src={NoImage} layout="fill" objectFit="cover" /> */}
           </div>
           <div className="px-1 center pb-2 sm:py-4">
             <div className="text-gray-800 font-bold text-xl mb-1">ポテト</div>

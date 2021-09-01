@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useCallback, useState } from 'react';
 import { ImageArea } from '../../../components/Edit';
-import { getRestaurantDetail, saveRestaurant } from '../../../lib/restaurantLib';
+import { editSaveRestaurant, getRestaurantDetail } from '../../../lib/restaurantLib';
 
 
 
@@ -28,7 +28,7 @@ const RestaurantEdit = ({ data }) => {
       setMessage('店舗名を入力してください');
       return;
     }
-    await saveRestaurant(id, name, address, images);
+    await editSaveRestaurant(id, name, address, images);
     router.push(`/restaurant/${id}`);
   }
   
@@ -42,7 +42,7 @@ const RestaurantEdit = ({ data }) => {
         <div className="w-full max-w-xs center">
           <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
             <div className="mb-4">
-              <ImageArea images={images} setImages={setImages} />
+              <ImageArea restId={id} images={images} setImages={setImages} />
             </div>
             <div className="mb-4">
               <label className="block text-gray-700 text-sm font-bold mb-2">
