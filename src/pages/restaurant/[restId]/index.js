@@ -50,7 +50,7 @@ const RestaurantDetail = ({ data }) => {
           </Link>
         </div>
         <div className="mb-3">
-          <Link href="/restaurant">
+          <Link href="/restaurant/">
             <a className="inline-block align-baseline font-bold text-sm text-purple-500 hover:text-purple-800">店舗一覧へ</a>
           </Link>
         </div>
@@ -74,7 +74,6 @@ export const getServerSideProps = async({ params }) => {
       data,
     }
   }
-
 }
 
 export default RestaurantDetail

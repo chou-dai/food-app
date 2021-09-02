@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useCallback, useState } from 'react';
-import { ImageArea } from '../../components/Edit';
 import { firstSaveRestaurant } from '../../lib/restaurantLib';
 
 const RestaurantEdit = () => {
@@ -13,7 +12,6 @@ const RestaurantEdit = () => {
         [message, setMessage] = useState("");
 
   const images = [];
-
   const noImage = {
     id: "7dndNuKZZobih9ke",
     path: "https://firebasestorage.googleapis.com/v0/b/food-app-37cd5.appspot.com/o/images%2FnoImage%2F7dndNuKZZobih9ke?alt=media&token=5244687c-73d4-45ad-b550-7aec8fac8430"
@@ -27,15 +25,13 @@ const RestaurantEdit = () => {
     setAddress(event.target.value)
   }, [setAddress])
 
-  
-
   const save = async() => {
     if(name === ''){
       setMessage('店舗名を入力してください');
       return;
     }
     await firstSaveRestaurant(id, name, address, images, noImage);
-    router.push('/restaurant');
+    router.push('/restaurant/');
   }
   
   return (
@@ -80,7 +76,7 @@ const RestaurantEdit = () => {
               >
                 保存
               </button>
-              <Link href="/restaurant">
+              <Link href="/restaurant/">
                 <a className="inline-block align-baseline font-bold text-sm text-purple-500 hover:text-purple-800">店舗一覧へ</a>
               </Link>
             </div>

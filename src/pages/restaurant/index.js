@@ -34,8 +34,6 @@ const RestaurantList = ({ data }) => {
             )}
           </div>
         </div>
-        <div>
-        </div>
         <div className='module-spacer--small' />
         <div className='module-spacer--small' />
       </section>
@@ -45,7 +43,6 @@ const RestaurantList = ({ data }) => {
 
 export const getServerSideProps = async () => {
   const data = await getRestaurantList();
-
   return {
     props: {
       data,

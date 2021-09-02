@@ -94,13 +94,11 @@ const RestaurantEdit = ({ data }) => {
 
 export const getServerSideProps = async({ params }) => {
   const data = await getRestaurantDetail(params.restId);
-
   return {
     props: {
       data,
     }
   }
-
 }
 
 export default RestaurantEdit
