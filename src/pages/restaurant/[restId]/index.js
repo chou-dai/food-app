@@ -2,18 +2,19 @@ import { useRouter } from 'next/router';
 import React from 'react';
 import Link from 'next/link';
 import { deleteRestaurant, getRestaurantDetail } from '../../../lib/restaurantLib';
-import { ImageCard } from '../../../components/Uikit';
+import { ImageCard, ImageSwiper } from '../../../components/Uikit';
 
 const RestaurantDetail = ({ data }) => {
   const router = useRouter();
   const {restId} = router.query;
-  const images = (data.images.length > 0) ? data.images : [data.noImage];
 
   const deleteRest = () => {
     const pw = window.prompt("パスワードを入力");
     if(pw === '0011'){
       deleteRestaurant(restId)
       window.alert("削除に成功しました")
+    } else if(pw === null) {
+      return;
     } else {
       window.alert("パスワードが違います")
     }
@@ -26,7 +27,12 @@ const RestaurantDetail = ({ data }) => {
         <div className='module-spacer--small' />
         <h1> 店舗詳細: {data.name}</h1>
         <div className='module-spacer--small' />
-        <ImageCard id={images[0].path} path={images[0].path} />
+        {data.images.length === 0 ? (
+          console.log(data.noImage),
+          <ImageCard image={data.noImage} />
+        ):(
+          <ImageSwiper images={data.images} />
+        )}
         <div className='module-spacer--small' />
         <h2>住所：{data.address === "" ? "未登録":data.address}</h2>
         <div className='module-spacer--small' />

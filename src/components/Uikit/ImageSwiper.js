@@ -1,0 +1,37 @@
+import React, { useState } from "react";
+import Swiper from "react-id-swiper";
+import 'swiper/css/swiper.css';
+
+const ImageSwiper = (props) => {
+  const params = {
+    lazy: true,
+    pagination: {
+      el: '.swiper-pagination',
+      type: 'fraction',
+      clickable: true
+    },
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+    loop: true,
+    spaceBetween: 10,
+  }
+
+  const images = props.images
+
+  return (
+    <div className="center content-center h-56 w-60 mb-4 rounded-md overflow-hidden shadow-md bg-white">
+      <Swiper {...params}>
+        {images.map(image => (
+          <div className='swiper-slide'>
+            <img className="shadow object-cover w-60 h-48 mt-4 swiper-lazy" src={image.path} />
+            <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
+          </div>
+        ))}
+      </Swiper>
+    </div>
+  )
+}
+
+export default ImageSwiper
