@@ -28,7 +28,6 @@ const RestaurantDetail = ({ data }) => {
         <h1> 店舗詳細: {data.name}</h1>
         <div className='module-spacer--small' />
         {data.images.length === 0 ? (
-          console.log(data.noImage),
           <ImageCard image={data.noImage} />
         ):(
           <ImageSwiper images={data.images} />
