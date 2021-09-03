@@ -3,6 +3,7 @@ import React from 'react'
 import Link from 'next/link';
 import { getMenuDetail } from '../../../../../lib/menuLib';
 import { ImageCard, ImageSwiper } from '../../../../../components/Uikit';
+import { MenuImageButton } from '../../../../../components/Menus';
 
 const MenuList = ({ data }) => {
   const router = useRouter();
@@ -32,6 +33,9 @@ const MenuList = ({ data }) => {
           ):(
             <ImageSwiper images={data.images} />
           )}
+          <div className="mb-4">
+            <MenuImageButton menuId={menuId} restId={restId} images={data.images} />
+          </div>
           <h1>{data.price}円</h1>
           <div className='module-spacer--small' />
           <div className="mb-3">

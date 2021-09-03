@@ -23,11 +23,23 @@ export const firstSaveRestaurant = (id, name, address, images, noImage) => {
     })
 }
 
-export const editSaveRestaurant = (id, name, address, images) => {
+export const editSaveRestaurant = (id, name, address) => {
   const data = {
     name: name,
     address: address,
-    images: images
+  }
+  return restaurantsRef.doc(id).set(data, {merge: true})
+    .then(() => {
+      return
+    }).catch((error) => {
+      throw new Error(error)
+    })
+}
+
+
+export const saveRestaurantImage = (id, images) => {
+  const data = {
+    images: images,
   }
   return restaurantsRef.doc(id).set(data, {merge: true})
     .then(() => {

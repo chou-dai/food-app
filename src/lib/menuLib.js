@@ -39,6 +39,20 @@ export const editSaveMenu = (id, restId, name, price) => {
 }
 
 
+export const saveMenuImage = (id, restId, images) => {
+  const menusRef = restRef.doc(restId).collection('menus');
+  const data = {
+    images: images,
+  }
+  return menusRef.doc(id).set(data, {merge: true})
+    .then(() => {
+      return
+    }).catch((error) => {
+      throw new Error(error)
+    })
+}
+
+
 export const getMenuList = async(restId) => {
   const data = [];
   const menusRef = restRef.doc(restId).collection('menus');

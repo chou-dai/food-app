@@ -1,8 +1,8 @@
 import React, { useCallback } from 'react';
 import { storage } from '../../firebase';
-import ImagePreview from './ImagePreview';
+import { saveRestaurantImage } from '../../lib/restaurantLib';
 
-const ImageArea = (props) => {
+const RestImageButton = (props) => {
   const restId = props.restId;
 
   const deleteImage = useCallback(async(id) => {
@@ -16,8 +16,7 @@ const ImageArea = (props) => {
     }
   }, [props.images])
 
-  const uploadImage = useCallback((event) => {
-    const file = event.target.files;
+  const uploadImage = async(file) => {
     let blob = new Blob(file, {type: 'image/jpeg'});
 
     const S="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
@@ -27,27 +26,32 @@ const ImageArea = (props) => {
     const uploadRef = storage.ref('images').child(restId).child(fileName);
     const uploadTask = uploadRef.put(blob);
 
-    uploadTask.then(() => {
+    await uploadTask.then(() => {
       uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
         const newImage = {id: fileName, path: downloadURL};
-        props.setImages((prevState => [...prevState, newImage]))
+        const images = [...props.images, newImage];
+        saveRestaurantImage(restId, images);
       });
     })
-  }, [props.setImages])
+  }
 
-  const upload = (event) => {
+  const upload = async(event) => {
+    const file = event.target.files;
+    if(file.length === 0) {
+      return;
+    }
     const conf = window.confirm("この画像を追加しますか？");
-    console.log(conf);
+    if(conf) {
+      await uploadImage(file);
+      window.alert('追加完了');
+    } else {
+      return;
+    }
   }
   
 
   return (
     <div>
-      <div className='center'>
-        {props.images.length > 0 && (
-          props.images.map(image => <ImagePreview delete={deleteImage} id={image.id} path={image.path} key={image.id} />)
-        )}
-      </div>
       <div className="w-60 center">
         <label
           className="w-full flex flex-wrap py-2 bg-white rounded-md shadow-md border border-blue cursor-pointer hover:bg-purple-600 hover:text-white text-purple-600 ease-linear transition-all duration-150">
@@ -68,4 +72,4 @@ const ImageArea = (props) => {
   )
 }
 
-export default ImageArea
+export default RestImageButton

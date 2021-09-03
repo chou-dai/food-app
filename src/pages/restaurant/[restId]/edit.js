@@ -11,7 +11,6 @@ const RestaurantEdit = ({ data }) => {
 
   const [name, setName] = useState(data.name),
         [address, setAddress] = useState(data.address),
-        [images, setImages] = useState(data.images),
         [message, setMessage] = useState("");
 
   const inputName = useCallback((event) => {
@@ -27,7 +26,7 @@ const RestaurantEdit = ({ data }) => {
       setMessage('店舗名を入力してください');
       return;
     }
-    await editSaveRestaurant(id, name, address, images);
+    await editSaveRestaurant(id, name, address);
     router.push(`/restaurant/${id}`);
   }
   
