@@ -12,7 +12,6 @@ const MenuList = ({ data }) => {
   const deleteRest = () => {
     const pw = window.prompt("パスワードを入力");
     if(pw === '0011'){
-      deleteRestaurant(restId)
       window.alert("削除に成功しました")
     } else if(pw === null) {
       return;

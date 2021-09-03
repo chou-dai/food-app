@@ -3,6 +3,7 @@ import React from 'react';
 import Link from 'next/link';
 import { deleteRestaurant, getRestaurantDetail } from '../../../lib/restaurantLib';
 import { ImageCard, ImageSwiper } from '../../../components/Uikit';
+import { ImageArea } from '../../../components/Edit';
 
 const RestaurantDetail = ({ data }) => {
   const router = useRouter();
@@ -32,6 +33,9 @@ const RestaurantDetail = ({ data }) => {
         ):(
           <ImageSwiper images={data.images} />
         )}
+        <div className="mb-4">
+          <ImageArea restId={restId} images={data.images} />
+        </div>
         <div className='module-spacer--small' />
         <h2>住所：{data.address === "" ? "未登録":data.address}</h2>
         <div className='module-spacer--small' />

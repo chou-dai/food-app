@@ -34,6 +34,11 @@ const ImageArea = (props) => {
       });
     })
   }, [props.setImages])
+
+  const upload = (event) => {
+    const conf = window.confirm("この画像を追加しますか？");
+    console.log(conf);
+  }
   
 
   return (
@@ -43,7 +48,7 @@ const ImageArea = (props) => {
           props.images.map(image => <ImagePreview delete={deleteImage} id={image.id} path={image.path} key={image.id} />)
         )}
       </div>
-      <div>
+      <div className="w-60 center">
         <label
           className="w-full flex flex-wrap py-2 bg-white rounded-md shadow-md border border-blue cursor-pointer hover:bg-purple-600 hover:text-white text-purple-600 ease-linear transition-all duration-150">
           <div className="center flex flex-wrap">
@@ -55,7 +60,7 @@ const ImageArea = (props) => {
           </div>
           <input
             type='file' className="hidden" accept="image/*"
-            onChange={(event) => uploadImage(event)}
+            onChange={(event) => upload(event)}
           />
         </label>
       </div>
