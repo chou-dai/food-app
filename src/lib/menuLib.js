@@ -2,20 +2,21 @@ import { db } from '../firebase';
 
 const restRef = db.collection('restaurants');
 
-export const firstSaveMenu = (id, restId, name, price, images, noImage) => {
+export const firstSaveMenu = async(id, restId, name, price, images, noImage, review) => {
   const menusRef = restRef.doc(restId).collection('menus');
   const data = {
     name: name,
     price: price,
     images: images,
-    noImage: noImage
+    noImage: noImage,
+    review: review
   }
   if(id === "") {
     const ref = menusRef.doc();
     id = ref.id;
     data.id = id;
   }
-  return menusRef.doc(id).set(data, {merge: true})
+  return await menusRef.doc(id).set(data, {merge: true})
     .then(() => {
       return
     }).catch((error) => {
@@ -24,13 +25,13 @@ export const firstSaveMenu = (id, restId, name, price, images, noImage) => {
 }
 
 
-export const editSaveMenu = (id, restId, name, price) => {
+export const editSaveMenu = async(id, restId, name, price) => {
   const menusRef = restRef.doc(restId).collection('menus');
   const data = {
     name: name,
     price: price,
   }
-  return menusRef.doc(id).set(data, {merge: true})
+  return await menusRef.doc(id).set(data, {merge: true})
     .then(() => {
       return
     }).catch((error) => {
@@ -39,12 +40,12 @@ export const editSaveMenu = (id, restId, name, price) => {
 }
 
 
-export const saveMenuImage = (id, restId, images) => {
+export const saveMenuImage = async(id, restId, images) => {
   const menusRef = restRef.doc(restId).collection('menus');
   const data = {
     images: images,
   }
-  return menusRef.doc(id).set(data, {merge: true})
+  return await menusRef.doc(id).set(data, {merge: true})
     .then(() => {
       return
     }).catch((error) => {

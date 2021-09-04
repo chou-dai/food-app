@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import React, { useCallback } from 'react';
 import { storage } from '../../firebase';
 import { saveMenuImage } from '../../lib/menuLib';
@@ -5,6 +6,7 @@ import { saveMenuImage } from '../../lib/menuLib';
 const MenuImageButton = (props) => {
   const restId = props.restId;
   const menuId = props.menuId;
+  const router = useRouter();
 
   const deleteImage = useCallback(async(id) => {
     const ret = window.confirm('この画像を削除しますか？')
@@ -27,11 +29,11 @@ const MenuImageButton = (props) => {
     const uploadRef = storage.ref('images').child(restId).child(menuId).child(fileName);
     const uploadTask = uploadRef.put(blob);
 
-    await uploadTask.then(() => {
-      uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
+    await uploadTask.then(async() => {
+      await uploadTask.snapshot.ref.getDownloadURL().then(async(downloadURL) => {
         const newImage = {id: fileName, path: downloadURL};
         const images = [...props.images, newImage];
-        saveMenuImage(menuId, restId, images);
+        await saveMenuImage(menuId, restId, images);
       });
     })
   }
@@ -45,11 +47,11 @@ const MenuImageButton = (props) => {
     if(conf) {
       await uploadImage(file);
       window.alert('追加完了');
+      window.location.reload();
     } else {
       return;
     }
   }
-  
 
   return (
     <div>

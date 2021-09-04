@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import React, { useCallback, useState } from 'react'
 import { firstSaveMenu } from '../../../../lib/menuLib';
 
-const RestaurantEdit = () => {
+const MenuEdit = () => {
   const id = '';
   const router = useRouter();
   const {restId} = router.query;
@@ -13,6 +13,7 @@ const RestaurantEdit = () => {
         [message, setMessage] = useState("");
   
   const images = [];
+  const review = "";
   const noImage = {
     id: "7dndNuKZZobih9ke",
     path: "https://firebasestorage.googleapis.com/v0/b/food-app-37cd5.appspot.com/o/images%2FnoImage%2F7dndNuKZZobih9ke?alt=media&token=5244687c-73d4-45ad-b550-7aec8fac8430"
@@ -37,7 +38,7 @@ const RestaurantEdit = () => {
       setMessage('価格を入力してください');
       return;
     }
-    await firstSaveMenu(id, restId, name, price, images, noImage);
+    await firstSaveMenu(id, restId, name, price, images, noImage, review);
     router.push(`/restaurant/${restId}/menu/`)
   }
   
@@ -96,4 +97,4 @@ const RestaurantEdit = () => {
   )
 }
 
-export default RestaurantEdit
+export default MenuEdit

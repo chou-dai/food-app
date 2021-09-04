@@ -27,6 +27,7 @@ const RestaurantDetail = ({ data }) => {
         <div className='module-spacer--small' />
         <div className='module-spacer--small' />
         <h1> 店舗詳細: {data.name}</h1>
+        <h2 className="mt-2">住所：{data.address === "" ? "未登録":data.address}</h2>
         <div className='module-spacer--small' />
         {data.images.length === 0 ? (
           <ImageCard image={data.noImage} />
@@ -36,9 +37,6 @@ const RestaurantDetail = ({ data }) => {
         <div className="mb-4">
           <RestImageButton restId={restId} images={data.images} />
         </div>
-        <div className='module-spacer--small' />
-        <h2>住所：{data.address === "" ? "未登録":data.address}</h2>
-        <div className='module-spacer--small' />
         <div>
           <button
             className="bg-purple-600 hover:bg-purple-100 text-white hover:text-purple-600 font-bold py-3.5 px-20 border border-purple-600 rounded"

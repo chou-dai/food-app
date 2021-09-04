@@ -37,11 +37,11 @@ export const editSaveRestaurant = (id, name, address) => {
 }
 
 
-export const saveRestaurantImage = (id, images) => {
+export const saveRestaurantImage = async(id, images) => {
   const data = {
     images: images,
   }
-  return restaurantsRef.doc(id).set(data, {merge: true})
+  return await restaurantsRef.doc(id).set(data, {merge: true})
     .then(() => {
       return
     }).catch((error) => {

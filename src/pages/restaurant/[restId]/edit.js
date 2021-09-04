@@ -5,7 +5,7 @@ import { editSaveRestaurant, getRestaurantDetail } from '../../../lib/restaurant
 
 
 
-const RestaurantEdit = ({ data }) => {
+const RestaurantDetailEdit = ({ data }) => {
   const router = useRouter();
   const id = data.id;
 
@@ -96,4 +96,4 @@ export const getServerSideProps = async({ params }) => {
   }
 }
 
-export default RestaurantEdit
+export default RestaurantDetailEdit

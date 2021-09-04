@@ -26,11 +26,11 @@ const RestImageButton = (props) => {
     const uploadRef = storage.ref('images').child(restId).child(fileName);
     const uploadTask = uploadRef.put(blob);
 
-    await uploadTask.then(() => {
-      uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
+    await uploadTask.then(async() => {
+      await uploadTask.snapshot.ref.getDownloadURL().then(async(downloadURL) => {
         const newImage = {id: fileName, path: downloadURL};
         const images = [...props.images, newImage];
-        saveRestaurantImage(restId, images);
+        await saveRestaurantImage(restId, images);
       });
     })
   }

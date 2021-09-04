@@ -3,8 +3,7 @@ import { useRouter } from 'next/router'
 import React, { useCallback, useState } from 'react'
 import { editSaveMenu, getMenuDetail } from '../../../../../lib/menuLib';
 
-const RestaurantEdit = ({ data }) => {
-  console.log(data);
+const MenuDetailEdit = ({ data }) => {
   const router = useRouter();
   const {restId} = router.query;
   const {menuId} = router.query;
@@ -102,4 +101,4 @@ export const getServerSideProps = async({ params }) => {
   }
 }
 
-export default RestaurantEdit
+export default MenuDetailEdit
