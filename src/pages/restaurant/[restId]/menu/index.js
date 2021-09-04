@@ -3,6 +3,7 @@ import React from 'react';
 import Link from 'next/link';
 import { MenuCard } from '../../../../components/Menus';
 import { getMenuList } from '../../../../lib/menuLib';
+import BeatLoader from 'react-spinners/BeatLoader';
 
 const MenuList = ({ data }) => {
   const router = useRouter();
@@ -12,6 +13,7 @@ const MenuList = ({ data }) => {
       <div>
         <section className='c-section-wrapin'>
           <div className='module-spacer--small' />
+          <BeatLoader color={"#9013FE"} loading={true} size={30} />
           <div className='module-spacer--small' />
           <h1>店舗: {restId}　メニューページ</h1>
           <div className='module-spacer--small' />
