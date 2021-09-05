@@ -1,11 +1,12 @@
 import '../styles/style.css'
 import 'tailwindcss/tailwind.css'
 import '../styles/reset.css'
-import { Layout } from '../components/Uikit'
+import { Layout, Navigation } from '../components/Uikit'
 
-function MyApp({ Component, pageProps }) {
+const MyApp = ({ Component, pageProps }) => {
   return(
     <Layout>
+      <Navigation />
       <Component {...pageProps} />
     </Layout>
   )

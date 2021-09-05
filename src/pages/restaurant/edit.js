@@ -56,12 +56,12 @@ const RestaurantEdit = () => {
             </div>
             <div>
               <label className="block text-gray-700 text-sm font-bold mb-2">
-                住所
+                拠店※
               </label>
               <input
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
                 type="text"
-                placeholder="大阪府"
+                placeholder="本店"
                 onChange={inputAddress}
               />
             </div>
@@ -77,7 +77,9 @@ const RestaurantEdit = () => {
                 保存
               </button>
               <Link href="/restaurant/">
-                <a className="inline-block align-baseline font-bold text-sm text-purple-500 hover:text-purple-800">店舗一覧へ</a>
+                <a
+                  href="/restaurant/"
+                  className="inline-block align-baseline font-bold text-sm text-purple-500 hover:text-purple-800">店舗一覧へ</a>
               </Link>
             </div>
           </form>
