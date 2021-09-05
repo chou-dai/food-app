@@ -37,7 +37,7 @@ const MenuCard = (props) => {
             </div>
           </div>
           <div className="px-1 center pb-2 sm:pb-4 sm:pt-2">
-            <div className={classes.root} className="center">
+            <div className={classes.root, "center"}>
               <Rating
                 name="half-rating-read"
                 defaultValue={props.star}
