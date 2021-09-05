@@ -1,9 +1,22 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import { storage } from '../../firebase';
 import { saveRestaurantImage } from '../../lib/restaurantLib';
+import Backdrop from '@material-ui/core/Backdrop';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import Button from '@material-ui/core/Button';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles((theme) => ({
+  backdrop: {
+    zIndex: theme.zIndex.drawer + 1,
+    color: '#fff',
+  },
+}));
 
 const RestImageButton = (props) => {
   const restId = props.restId;
+  const classes = useStyles();
+  const [open, setOpen] = useState(false);
 
   const deleteImage = useCallback(async(id) => {
     const ret = window.confirm('この画像を削除しますか？')
@@ -42,13 +55,15 @@ const RestImageButton = (props) => {
     }
     const conf = window.confirm("この画像を追加しますか？");
     if(conf) {
+      setOpen(true);
       await uploadImage(file);
+      setOpen(false)
       window.alert('追加完了');
+      window.location.reload();
     } else {
       return;
     }
   }
-  
 
   return (
     <div>
@@ -67,6 +82,11 @@ const RestImageButton = (props) => {
             onChange={(event) => upload(event)}
           />
         </label>
+      </div>
+      <div>
+        <Backdrop className={classes.backdrop} open={open}>
+          <CircularProgress color="inherit" />
+        </Backdrop>
       </div>
     </div>
   )
