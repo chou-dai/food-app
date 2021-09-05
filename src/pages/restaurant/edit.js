@@ -77,9 +77,7 @@ const RestaurantEdit = () => {
                 保存
               </button>
               <Link href="/restaurant/">
-                <a
-                  href="/restaurant/"
-                  className="inline-block align-baseline font-bold text-sm text-purple-500 hover:text-purple-800">店舗一覧へ</a>
+                <a className="inline-block align-baseline font-bold text-sm text-purple-500 hover:text-purple-800">店舗一覧へ</a>
               </Link>
             </div>
           </form>
