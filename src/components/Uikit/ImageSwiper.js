@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import Swiper from "react-id-swiper";
 import 'swiper/css/swiper.css';
+import Image from 'material-ui-image';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 const ImageSwiper = (props) => {
   const params = {
-    lazy: true,
     pagination: {
       el: '.swiper-pagination',
       type: 'fraction',
@@ -14,7 +15,6 @@ const ImageSwiper = (props) => {
       nextEl: '.swiper-button-next',
       prevEl: '.swiper-button-prev',
     },
-    loop: true,
     spaceBetween: 10,
   }
 
@@ -25,8 +25,14 @@ const ImageSwiper = (props) => {
       <Swiper {...params}>
         {images.map(image => (
           <div key={image.id} className='swiper-slide'>
-            <img className="shadow object-cover w-56 h-48 mt-2 rounded swiper-lazy" src={image.path} />
-            <div className="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
+            <div className="m-2 h-48">
+              <Image
+                src={image.path}
+                className="shadow object-cover w-full rounded"
+                style={{"backgroud": "none", "padding": 0, "width": "100%", "height": "100%"}}
+                loading={<CircularProgress style={{'color': '#9400d3'}} />}
+              />
+            </div>
           </div>
         ))}
       </Swiper>

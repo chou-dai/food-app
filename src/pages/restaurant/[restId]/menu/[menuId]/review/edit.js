@@ -2,7 +2,6 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useCallback, useState } from 'react';
 import Rating from '@material-ui/lab/Rating';
-import Typography from '@material-ui/core/Typography';
 import { calcStar, firstSaveReview } from '../../../../../../lib/reviewLib';
 
 
@@ -38,16 +37,18 @@ const ReviewEdit = () => {
         <div className="w-full max-w-xs center">
           <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
             <div className="mb-4">
-              <Typography component="legend">評価</Typography>
-                <Rating
-                  name="simple-controlled"
-                  value={star}
-                  onChange={(event, newStar) => {
-                    setStar(newStar);
-                  }}
-                />
+              <label className="block text-gray-700 text-sm font-bold mb-2">
+                評価
+              </label>
+              <Rating
+                name="simple-controlled"
+                value={star}
+                onChange={(event, newStar) => {
+                  setStar(newStar);
+                }}
+              />
             </div>
-            <div>
+            <div className="mb-2">
               <label className="block text-gray-700 text-sm font-bold mb-2">
                 コメント
               </label>

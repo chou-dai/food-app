@@ -7,6 +7,17 @@
 @import "~tailwindcss/components";
 @import "~tailwindcss/utilities";
 
+/*********** Image Swiper ***********/
+.swiper-pagination {
+  color: #ffffff;
+}
+.swiper-button-next:after, .swiper-container-rtl .swiper-button-prev:after {
+  color: rgb(124, 58, 237);
+}
+.swiper-button-prev:after, .swiper-container-rtl .swiper-button-next:after {
+  color: rgb(124, 58, 237);
+}
+
 /*********** Module Spacer ***********/
 .module-spacer--extra-extra-small {
   height: 12px

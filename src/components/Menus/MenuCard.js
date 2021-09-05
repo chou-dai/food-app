@@ -14,14 +14,14 @@ const MenuCard = (props) => {
       }}>
         <div className=" rounded-md overflow-hidden shadow-lg hover:bg-gray-100 bg-white">
           <div className="p-1.5">
-          <div className="m-1.5 h-24 sm:h-32">
-            <Image
-              src={images[0].path}
-              className="shadow object-cover w-full rounded"
-              style={{"backgroud": "none", "padding": 0, "width": "100%", "height": "100%"}}
-              loading={<CircularProgress style={{'color': '#9400d3'}} />}
-            />
-          </div>
+            <div className="m-1.5 h-24 sm:h-32">
+              <Image
+                src={images[0].path}
+                className="shadow object-cover w-full rounded"
+                style={{"backgroud": "none", "padding": 0, "width": "100%", "height": "100%"}}
+                loading={<CircularProgress style={{'color': '#9400d3'}} />}
+              />
+            </div>
           </div>
           <div className="px-1 center pb-2 sm:py-4">
             <div className="text-gray-800 font-bold text-xl mb-1">{props.menuName}</div>
