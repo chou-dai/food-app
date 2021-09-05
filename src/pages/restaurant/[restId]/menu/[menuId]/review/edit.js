@@ -41,6 +41,7 @@ const ReviewEdit = () => {
                 評価
               </label>
               <Rating
+                style={{fontSize: "2.5rem"}}
                 name="simple-controlled"
                 value={star}
                 onChange={(event, newStar) => {

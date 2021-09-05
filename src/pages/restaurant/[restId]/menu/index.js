@@ -32,7 +32,7 @@ const MenuList = ({ data }) => {
                 data.map(menu => (
                   <MenuCard
                     key={menu.id} restId={restId} menuId={menu.id} menuName={menu.name}
-                    price={menu.price} images={menu.images} noImage={menu.noImage}
+                    price={menu.price} images={menu.images} noImage={menu.noImage} star={menu.review.star}
                   />
                 ))
               )}

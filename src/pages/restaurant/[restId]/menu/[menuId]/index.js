@@ -4,11 +4,14 @@ import Link from 'next/link';
 import { getMenuDetail } from '../../../../../lib/menuLib';
 import { ImageCard, ImageSwiper } from '../../../../../components/Uikit';
 import { MenuImageButton } from '../../../../../components/Menus';
+import { calcStar } from '../../../../../lib/reviewLib';
 
 const MenuDetail = ({ data }) => {
   const router = useRouter();
   const {restId} = router.query;
   const {menuId} = router.query;
+
+  calcStar(restId, menuId);
 
   const deleteRest = () => {
     const pw = window.prompt("パスワードを入力");

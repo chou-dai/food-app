@@ -54,6 +54,20 @@ export const saveMenuImage = async(id, restId, images) => {
 }
 
 
+export const saveMenuReview = async(id, restId, review) => {
+  const menusRef = restRef.doc(restId).collection('menus');
+  const data = {
+    review: review,
+  }
+  return await menusRef.doc(id).set(data, {merge: true})
+    .then(() => {
+      return
+    }).catch((error) => {
+      throw new Error(error)
+    })
+}
+
+
 export const getMenuList = async(restId) => {
   const data = [];
   const menusRef = restRef.doc(restId).collection('menus');

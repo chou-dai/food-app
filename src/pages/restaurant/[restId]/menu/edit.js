@@ -13,7 +13,7 @@ const MenuEdit = () => {
         [message, setMessage] = useState("");
   
   const images = [];
-  const review = "";
+  const review = {count:0,star:0};
   const noImage = {
     id: "7dndNuKZZobih9ke",
     path: "https://firebasestorage.googleapis.com/v0/b/food-app-37cd5.appspot.com/o/images%2FnoImage%2F7dndNuKZZobih9ke?alt=media&token=5244687c-73d4-45ad-b550-7aec8fac8430"

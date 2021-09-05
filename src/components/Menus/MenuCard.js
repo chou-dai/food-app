@@ -2,8 +2,21 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'material-ui-image';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import Rating from '@material-ui/lab/Rating';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    display: 'flex',
+    flexDirection: 'column',
+    '& > * + *': {
+      marginTop: theme.spacing(1),
+    },
+  },
+}));
 
 const MenuCard = (props) => {
+  const classes = useStyles();
   const images = (props.images.length > 0) ? props.images : [props.noImage];
 
   return (
@@ -23,7 +36,16 @@ const MenuCard = (props) => {
               />
             </div>
           </div>
-          <div className="px-1 center pb-2 sm:py-4">
+          <div className="px-1 center pb-2 sm:pb-4 sm:pt-2">
+            <div className={classes.root} className="center">
+              <Rating
+                name="half-rating-read"
+                defaultValue={props.star}
+                precision={0.5}
+                className="my-1"
+                readOnly
+              />
+            </div>
             <div className="text-gray-800 font-bold text-xl mb-1">{props.menuName}</div>
             <p className="text-gray-700 text-base">{props.price}円</p>
           </div>
