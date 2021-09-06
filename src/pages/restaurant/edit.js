@@ -69,6 +69,9 @@ const RestaurantEdit = () => {
               <p className="text-red-600 text-xs">{message}</p>
             </div>
             <div className="flex items-center justify-between">
+              <Link href="/restaurant/">
+                <a className="inline-block align-baseline font-bold text-sm text-purple-500 hover:text-purple-800">店舗一覧へ</a>
+              </Link>
               <button
                 className="bg-purple-600 hover:bg-purple-100 text-white hover:text-purple-600 font-bold border border-purple-600 py-2 px-9 rounded focus:outline-none focus:shadow-outline"
                 type="button"
@@ -76,9 +79,6 @@ const RestaurantEdit = () => {
               >
                 保存
               </button>
-              <Link href="/restaurant/">
-                <a className="inline-block align-baseline font-bold text-sm text-purple-500 hover:text-purple-800">店舗一覧へ</a>
-              </Link>
             </div>
           </form>
         </div>
