@@ -29,19 +29,24 @@ const MenuForm = (props) => {
     setPriceError(false);
   }, [setPrice])
 
-  const save = async() => {
-    if(name === '' && price === '') {
+  const check = () => {
+    let errorCount = 0;
+    if(name === '') {
       setNameError(true);
+      errorCount += 1;
+    }
+    if(price === '') {
       setPriceError(true);
-      return;
-    } else if(name === '') {
-      setNameError(true);
-      return;
-    } else if(price === '') {
-      setPriceError(true);
+      errorCount += 1;
+    }
+    return errorCount;
+  }
+
+  const fireSave = async() => {
+    const conf = window.confirm(`以下の内容で間違いないですか？\n\nメニュー名：${name}\n価格：${price}円`);
+    if(conf === false) {
       return;
     }
-    window.confirm(`以下の内容で間違いないですか？\nメニュー名：${name}\n価格：${price}円`);
     const pw = window.prompt("パスワードを入力");
     if(pw === '0011'){
       await firstSaveMenu(props.menuId, props.restId, name, price, images, noImage, review);
@@ -51,6 +56,14 @@ const MenuForm = (props) => {
       return;
     } else {
       window.alert("パスワードが違います");
+    }
+  }
+
+  const save = () => {
+    if (check() === 0) {
+      fireSave();
+    } else {
+      return;
     }
   }
 

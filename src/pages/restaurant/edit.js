@@ -11,7 +11,7 @@ const RestaurantEdit = () => {
         [address, setAddress] = useState(""),
         [message, setMessage] = useState("");
 
-  const images = [];
+  const image = "";
   const noImage = {
     id: "7dndNuKZZobih9ke",
     path: "https://firebasestorage.googleapis.com/v0/b/food-app-37cd5.appspot.com/o/images%2FnoImage%2F7dndNuKZZobih9ke?alt=media&token=5244687c-73d4-45ad-b550-7aec8fac8430"
@@ -30,7 +30,7 @@ const RestaurantEdit = () => {
       setMessage('店舗名を入力してください');
       return;
     }
-    await firstSaveRestaurant(id, name, address, images, noImage);
+    await firstSaveRestaurant(id, name, address, image, noImage);
     router.push('/restaurant/');
   }
   
