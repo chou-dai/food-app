@@ -1,39 +1,25 @@
 import { useRouter } from 'next/router';
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import { deleteRestaurant, getRestaurantDetail } from '../../../lib/restaurantLib';
-import { RestImageButton } from '../../../components/Restaurants';
-import Image from 'material-ui-image';
-import CircularProgress from '@material-ui/core/CircularProgress';
+import { RestTopImage } from '../../../components/Restaurants';
 import Paper from '@material-ui/core/Paper';
 import { getMenuList } from '../../../lib/menuLib';
-import { MenuCard } from '../../../components/Menus';
-import { makeStyles } from '@material-ui/core/styles';
-import AddIcon from '@material-ui/icons/Add';
-import Fab from '@material-ui/core/Fab';
-import Tooltip from '@material-ui/core/Tooltip';
-import Button from '@material-ui/core/Button';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
-
-
-const useStyles = makeStyles((theme) => ({
-  fixed: {
-    position: 'fixed',
-    bottom: theme.spacing(2),
-    right: theme.spacing(3),
-  },
-}));
+import { MenuCardList, MenuForm } from '../../../components/Menus';
+import AddButton from '../../../components/Uikit/AddButton';
 
 
 const RestaurantDetail = ({ restData, menuData }) => {
-  const classes = useStyles();
   const router = useRouter();
   const {restId} = router.query;
+  const [open, setOpen] = useState(false);
 
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
   const deleteRest = () => {
     const pw = window.prompt("パスワードを入力");
     if(pw === '0011'){
@@ -45,108 +31,20 @@ const RestaurantDetail = ({ restData, menuData }) => {
       window.alert("パスワードが違います")
     }
   }
-
-  const [open, setOpen] = React.useState(false);
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
   
   return (
     <div>
       <section className='center'>
-        {restData.images.length === 0 ? (
-          <div className="center content-center h-52 w-full overflow-hidden shadow-md bg-white">
-            <div className="h-52">
-              <Image
-                src={restData.noImage.path}
-                className="shadow object-cover w-full"
-                style={{"backgroud": "none", "padding": 0, "width": "100%", "height": "100%"}}
-                loading={<CircularProgress style={{'color': '#9400d3'}} />}
-              />
-            </div>
-          </div>
-        ):(
-          <div className="center content-center h-52 w-full overflow-hidden shadow-md bg-white">
-            <div className="h-52">
-              <Image
-                src={restData.images[0].path}
-                className="shadow object-cover w-full"
-                style={{"backgroud": "none", "padding": 0, "width": "100%", "height": "100%"}}
-                loading={<CircularProgress style={{'color': '#9400d3'}} />}
-              />
-            </div>
-          </div>
-        )}
+        <RestTopImage image={restData.images.length === 0 ? restData.noImage : restData.images[0]} />
         <Paper className="w-full mt-1 py-2" elevation={1}>
           <h1> 店舗詳細: {restData.name}</h1>
           <h2 className="mt-2">住所：{restData.address === "" ? "未登録":restData.address}</h2>
         </Paper>
-        <div className='justify-center'>
-          <div className='flex flex-wrap'>
-            {menuData.length > 0 && (
-              menuData.map(menu => (
-                <MenuCard
-                  key={menu.id} restId={restId} menuId={menu.id} menuName={menu.name}
-                  price={menu.price} images={menu.images} noImage={menu.noImage} star={menu.review.star}
-                />
-              ))
-            )}
-          </div>
-        </div>
-        <Tooltip title="Add" aria-label="add">
-          <Fab
-            color="primary"
-            className={classes.fixed}
-            onClick={handleClickOpen}
-          >
-            <AddIcon />
-          </Fab>
-        </Tooltip>
-        <Dialog
-          open={open}
-          onClose={handleClose}
-          aria-labelledby="alert-dialog-title"
-          aria-describedby="alert-dialog-description"
-        >
-          <DialogTitle id="alert-dialog-title">{"サンプルテキストサンプルテキスト"}</DialogTitle>
-          <DialogContent>
-            <DialogContentText id="alert-dialog-description">
-              サンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキスト
-            </DialogContentText>
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={handleClose} color="primary">
-              キャンセル
-            </Button>
-            <Button onClick={handleClose} color="primary" autoFocus>
-              保存
-            </Button>
-          </DialogActions>
-        </Dialog>
+        <MenuCardList data={menuData} restId={restId} />
+        <AddButton onClick={handleClickOpen} />
+        <MenuForm open={open} onClick={handleClose} restId={restId} menuId="" />
         <div className='module-spacer--small' />
-        
-        <div className="mb-4">
-          <RestImageButton restId={restId} images={restData.images} />
-        </div>
-        <div>
-          <button
-            className="bg-purple-600 hover:bg-purple-100 text-white hover:text-purple-600 font-bold py-3.5 px-20 border border-purple-600 rounded"
-            onClick={() => router.push(`/restaurant/${restId}/menu`)}
-          >
-            メニューを見る
-          </button>
-        </div>
         <div className='module-spacer--small' />
-        <div className="mb-3">
-          <Link href={`/restaurant/${restId}/edit`}>
-            <a className="inline-block align-baseline font-bold text-sm text-purple-500 hover:text-purple-800">店舗情報を編集</a>
-          </Link>
-        </div>
         <div className="mb-3">
           <Link href="/restaurant/">
             <a className="inline-block align-baseline font-bold text-sm text-purple-500 hover:text-purple-800">店舗一覧へ</a>

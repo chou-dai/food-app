@@ -1,10 +1,10 @@
 import { useRouter } from 'next/router'
 import React from 'react'
 import Link from 'next/link';
-import { getMenuDetail } from '../../../../../lib/menuLib';
-import { ImageCard, ImageSwiper } from '../../../../../components/Uikit';
-import { MenuImageButton } from '../../../../../components/Menus';
-import { calcStar } from '../../../../../lib/reviewLib';
+import { ImageCard, ImageSwiper } from '../../../../components/Uikit';
+import { MenuImageButton } from '../../../../components/Menus';
+import { calcStar } from '../../../../lib/reviewLib';
+import { getMenuDetail } from '../../../../lib/menuLib';
 
 const MenuDetail = ({ data }) => {
   const router = useRouter();
@@ -44,19 +44,14 @@ const MenuDetail = ({ data }) => {
           <div>
             <button
               className="bg-purple-600 hover:bg-purple-100 text-white hover:text-purple-600 font-bold py-3.5 px-20 border border-purple-600 rounded"
-              onClick={() => router.push(`/restaurant/${restId}/menu/${menuId}/review`)}
+              onClick={() => router.push(`/restaurant/${restId}/${menuId}/review`)}
             >
               レビューを見る
             </button>
           </div>
           <div className='module-spacer--small' />
           <div className="mb-3">
-            <Link href={`/restaurant/${restId}/menu/${menuId}/edit`}>
-              <a className="inline-block align-baseline font-bold text-sm text-purple-500 hover:text-purple-800">メニューを編集</a>
-            </Link>
-          </div>
-          <div className="mb-3">
-            <Link href={`/restaurant/${restId}/menu`}>
+            <Link href={`/restaurant/${restId}/`}>
               <a className="inline-block align-baseline font-bold text-sm text-purple-500 hover:text-purple-800">メニューページ</a>
             </Link>
           </div>

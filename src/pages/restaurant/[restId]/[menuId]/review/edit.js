@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useCallback, useState } from 'react';
 import Rating from '@material-ui/lab/Rating';
-import { calcStar, firstSaveReview } from '../../../../../../lib/reviewLib';
+import { calcStar, firstSaveReview } from '../../../../../lib/reviewLib';
 
 
 const ReviewEdit = () => {
@@ -24,7 +24,7 @@ const ReviewEdit = () => {
       .then(async() => {
         await calcStar(restId, menuId);
       })
-    router.push(`/restaurant/${restId}/menu/${menuId}/review/`);
+    router.push(`/restaurant/${restId}/${menuId}/review/`);
   }
   
   return (
@@ -70,7 +70,7 @@ const ReviewEdit = () => {
               >
                 保存
               </button>
-              <Link href={`/restaurant/${restId}/menu/${menuId}/review/`}>
+              <Link href={`/restaurant/${restId}/${menuId}/review/`}>
                 <a className="inline-block align-baseline font-bold text-sm text-purple-500 hover:text-purple-800">一覧ページへ</a>
               </Link>
             </div>
