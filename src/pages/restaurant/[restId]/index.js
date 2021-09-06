@@ -6,8 +6,11 @@ import { RestImageButton } from '../../../components/Restaurants';
 import Image from 'material-ui-image';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Paper from '@material-ui/core/Paper';
+import { getMenuList } from '../../../lib/menuLib';
+import { MenuCard } from '../../../components/Menus';
 
-const RestaurantDetail = ({ data }) => {
+const RestaurantDetail = ({ restData, menuData }) => {
+  console.log(restData);
   const router = useRouter();
   const {restId} = router.query;
 
@@ -26,11 +29,11 @@ const RestaurantDetail = ({ data }) => {
   return (
     <div>
       <section className='center'>
-        {data.images.length === 0 ? (
-          <div className="center content-center h-56 w-full overflow-hidden shadow-md bg-white">
-            <div className="h-56">
+        {restData.images.length === 0 ? (
+          <div className="center content-center h-52 w-full overflow-hidden shadow-md bg-white">
+            <div className="h-52">
               <Image
-                src={data.noImage.path}
+                src={restData.noImage.path}
                 className="shadow object-cover w-full"
                 style={{"backgroud": "none", "padding": 0, "width": "100%", "height": "100%"}}
                 loading={<CircularProgress style={{'color': '#9400d3'}} />}
@@ -38,10 +41,10 @@ const RestaurantDetail = ({ data }) => {
             </div>
           </div>
         ):(
-          <div className="center content-center h-56 w-full overflow-hidden shadow-md bg-white">
-            <div className="h-56">
+          <div className="center content-center h-52 w-full overflow-hidden shadow-md bg-white">
+            <div className="h-52">
               <Image
-                src={data.images[0].path}
+                src={restData.images[0].path}
                 className="shadow object-cover w-full"
                 style={{"backgroud": "none", "padding": 0, "width": "100%", "height": "100%"}}
                 loading={<CircularProgress style={{'color': '#9400d3'}} />}
@@ -50,14 +53,26 @@ const RestaurantDetail = ({ data }) => {
           </div>
         )}
         <Paper className="w-full mt-1 py-2" elevation={1}>
-          <h1> 店舗詳細: {data.name}</h1>
-          <h2 className="mt-2">住所：{data.address === "" ? "未登録":data.address}</h2>
+          <h1> 店舗詳細: {restData.name}</h1>
+          <h2 className="mt-2">住所：{restData.address === "" ? "未登録":restData.address}</h2>
         </Paper>
+        <div className='justify-center'>
+            <div className='flex flex-wrap'>
+              {menuData.length > 0 && (
+                menuData.map(menu => (
+                  <MenuCard
+                    key={menu.id} restId={restId} menuId={menu.id} menuName={menu.name}
+                    price={menu.price} images={menu.images} noImage={menu.noImage} star={menu.review.star}
+                  />
+                ))
+              )}
+            </div>
+          </div>
         
         <div className='module-spacer--small' />
         
         <div className="mb-4">
-          <RestImageButton restId={restId} images={data.images} />
+          <RestImageButton restId={restId} images={restData.images} />
         </div>
         <div>
           <button
@@ -92,10 +107,12 @@ const RestaurantDetail = ({ data }) => {
 }
 
 export const getServerSideProps = async({ params }) => {
-  const data = await getRestaurantDetail(params.restId);
+  const restData = await getRestaurantDetail(params.restId);
+  const menuData = await getMenuList(params.restId);
   return {
     props: {
-      data,
+      restData,
+      menuData,
     }
   }
 }
