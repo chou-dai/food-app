@@ -57,7 +57,12 @@
   height: 32px
 }
 
+
+/*********** Util ***********/
 .center {
   margin: 0 auto;
   text-align: center;
+}
+.z-1 {
+  z-index: 1;
 }

@@ -21,7 +21,7 @@ const ImageSwiper = (props) => {
   const images = props.images
 
   return (
-    <div className="center content-center h-52 w-60 mb-4 rounded-md overflow-hidden shadow-md bg-white">
+    <div className="center content-center h-52 w-full mb-4 rounded-md overflow-hidden shadow-md bg-white">
       <Swiper {...params}>
         {images.map(image => (
           <div key={image.id} className='swiper-slide'>

@@ -25,7 +25,7 @@ const MenuSearch = () => {
       <form action={() => {return}} className="flex bg-white border-2 rounded w-full pl-2">
         <SearchIcon className="text-gray-500 h-full" />
         <input
-          type="serch" className="appearance-none px-2 py-1 w-full focus:outline-none" placeholder="検索"
+          type="search" className="appearance-none px-2 py-1 w-full focus:outline-none" placeholder="検索"
           value={searchText} onChange={inpuText} onKeyPress={searchSubmit} />
       </form>
       <button className="border-2 items-center justify-center px-2 bg-white" onClick={sort}>

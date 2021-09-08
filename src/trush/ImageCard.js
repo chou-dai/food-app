@@ -4,7 +4,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 
 const ImageCard = (props) => {
   return (
-    <div className="center content-center h-52 w-60 mb-4 rounded-md overflow-hidden shadow-md bg-white">
+    <div className="center content-center h-52 w-full mb-4 rounded-md overflow-hidden shadow-md bg-white">
       <div className="m-2 h-48">
         <Image
           src={props.image.path}

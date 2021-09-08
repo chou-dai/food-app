@@ -1,10 +1,11 @@
 import { useRouter } from 'next/router'
 import React from 'react'
 import Link from 'next/link';
-import { ImageCard, ImageSwiper } from '../../../../components/Uikit';
-import { MenuImageButton } from '../../../../components/Menus';
 import { calcStar } from '../../../../lib/reviewLib';
 import { getMenuDetail } from '../../../../lib/menuLib';
+import MenuTopImage from '../../../../components/Menus/MenuTopImage';
+import Rating from '@material-ui/lab/Rating';
+import { EditButton } from '../../../../components/Uikit';
 
 const MenuDetail = ({ data }) => {
   const router = useRouter();
@@ -23,33 +24,28 @@ const MenuDetail = ({ data }) => {
       window.alert("パスワードが違います")
     }
   }
+
+  const save = () => {
+    window.alert("レビュー投稿処理");
+  }
   
   return (
       <div>
         <section className='center'>
-          <div className='module-spacer--small' />
-          <div className='module-spacer--small' />
-          <h1>メニュー詳細： {data.name}</h1>
-          <h1 className="mt-1">{data.price}円</h1>
-
-          <div className='module-spacer--small' />
-          {data.images.length === 0 ? (
-            <ImageCard image={data.noImage} />
-          ):(
-            <ImageSwiper images={data.images} />
-          )}
-          <div className="mb-4">
-            <MenuImageButton menuId={menuId} restId={restId} images={data.images} />
-          </div>
           <div>
-            <button
-              className="bg-purple-600 hover:bg-purple-100 text-white hover:text-purple-600 font-bold py-3.5 px-20 border border-purple-600 rounded"
-              onClick={() => router.push(`/restaurant/${restId}/${menuId}/review`)}
-            >
-              レビューを見る
-            </button>
+            <MenuTopImage restId={restId} images={data.images.length === 0 ? [data.noImage] : data.images} />
+            <div className="fixed top-0 mt-52 h-24 bg-white w-full overflow-hidden px-3">
+              <div className="mr-14 text-left overflow-hidden pl-3">
+                <Rating className="my-2" name="read-only" value={data.review.star} readOnly />
+                <h1 className="font-semibold text-xl">{data.name}</h1>
+                <p>{data.price}円</p>
+              </div>
+              <div className="absolute right-2 bottom-1">
+                <EditButton title="レビュー投稿" onClick={save} />
+              </div>
+            </div>
           </div>
-          <div className='module-spacer--small' />
+          <div style={{"margin-top":"19rem"}} />
           <div className="mb-3">
             <Link href={`/restaurant/${restId}/`}>
               <a className="inline-block align-baseline font-bold text-sm text-purple-500 hover:text-purple-800">メニューページ</a>

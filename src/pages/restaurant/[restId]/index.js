@@ -1,6 +1,5 @@
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
-import Link from 'next/link';
 import { deleteRestaurant, getRestaurantDetail } from '../../../lib/restaurantLib';
 import { RestTopImage } from '../../../components/Restaurants';
 import { getMenuList } from '../../../lib/menuLib';
@@ -35,7 +34,7 @@ const RestaurantDetail = ({ restData, menuData }) => {
     <div>
       <section className='center'>
         <RestTopImage name={restData.name} image={restData.images.length === 0 ? restData.noImage : restData.images[0]} />
-        <div className="mt-72 relative z-10 bg-white" style={{"border-radius":"40px 40px 0 0"}}>
+        <div className="mt-60 relative z-10 bg-white" style={{"border-radius":"40px 40px 0 0"}}>
           <div className="w-full py-2 bg-white" style={{"border-radius":"40px 40px 0 0"}}>
             <h1> 店舗詳細: {restData.name}</h1>
             <h2 className="mt-2">住所：{restData.address === "" ? "未登録":restData.address}</h2>
@@ -47,11 +46,6 @@ const RestaurantDetail = ({ restData, menuData }) => {
         <MenuForm open={open} onClick={handleClose} restId={restId} menuId="" />
         <div className='module-spacer--small' />
         <div className='module-spacer--small' />
-        <div className="mb-3">
-          <Link href="/restaurant/">
-            <a className="inline-block align-baseline font-bold text-sm text-purple-500 hover:text-purple-800">店舗一覧へ</a>
-          </Link>
-        </div>
         <div>
           <a 
             className="cursor-pointer inline-block align-baseline font-bold text-sm text-red-500 hover:text-red-800"
