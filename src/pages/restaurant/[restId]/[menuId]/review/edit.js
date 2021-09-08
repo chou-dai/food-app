@@ -29,7 +29,7 @@ const ReviewEdit = () => {
   
   return (
     <div>
-      <section className='c-section-wrapin'>
+      <section className='center'>
         <div className='module-spacer--small' />
         <div className='module-spacer--small' />
         <h1 className='font-bold text-2xl text-purple-700'>投稿・編集</h1>

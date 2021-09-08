@@ -11,7 +11,7 @@ const ReviewList = ({ data }) => {
   
   return (
       <div>
-        <section className='c-section-wrapin'>
+        <section className='center'>
           <div className='module-spacer--small' />
           <div className='module-spacer--small' />
           <h1>レビューページ</h1>
