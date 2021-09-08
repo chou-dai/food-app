@@ -6,7 +6,7 @@ import { Layout, Navigation } from '../components/Uikit'
 const MyApp = ({ Component, pageProps }) => {
   return(
     <Layout>
-      <Navigation />
+      {/* <Navigation /> */}
       <Component {...pageProps} />
     </Layout>
   )

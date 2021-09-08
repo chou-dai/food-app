@@ -35,12 +35,14 @@ const RestaurantDetail = ({ restData, menuData }) => {
   return (
     <div>
       <section className='center'>
-        <RestTopImage image={restData.images.length === 0 ? restData.noImage : restData.images[0]} />
-        <Paper className="w-full mt-1 py-2" elevation={1}>
-          <h1> 店舗詳細: {restData.name}</h1>
-          <h2 className="mt-2">住所：{restData.address === "" ? "未登録":restData.address}</h2>
-        </Paper>
-        <MenuCardList data={menuData} restId={restId} />
+        <RestTopImage name={restData.name} image={restData.images.length === 0 ? restData.noImage : restData.images[0]} />
+        <div className="mt-72 relative z-10 bg-white rounded-t-3xl">
+          <div className="w-full py-2 bg-white rounded-t-3xl">
+            <h1> 店舗詳細: {restData.name}</h1>
+            <h2 className="mt-2">住所：{restData.address === "" ? "未登録":restData.address}</h2>
+          </div>
+          <MenuCardList data={menuData} restId={restId} />
+        </div>
         <AddButton onClick={handleClickOpen} />
         <MenuForm open={open} onClick={handleClose} restId={restId} menuId="" />
         <div className='module-spacer--small' />

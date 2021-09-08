@@ -17,7 +17,7 @@ const AddButton = (props) => {
   const classes = useStyles();
 
   return (
-    <Tooltip title="新規メニュー追加" aria-label="add">
+    <Tooltip title="新規メニュー追加" aria-label="add" className="z-20">
       <Fab
         color="primary"
         className={classes.fixed}
