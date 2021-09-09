@@ -2,12 +2,13 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'material-ui-image';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import { MoreVertButton } from '../Uikit';
 
 const RestaurantCard = (props) => {
   const images = (props.images.length > 0) ? props.images : [props.noImage];
 
   return (
-    <div className="p-1 w-1/2 sm:p-2 sm:w-1/3 md:w-1/4 lg:w-1/5">
+    <div className="relative p-1 w-1/2 sm:p-2 sm:w-1/3 md:w-1/4 lg:w-1/5 overflow-hidden">
       <Link href={{
         pathname: "/restaurant/[restId]",
         query: {restId: props.restId}
@@ -26,6 +27,7 @@ const RestaurantCard = (props) => {
           </div>
         </div>
       </Link>
+      <MoreVertButton size="50px" bottom="0px" rigtht="-5px" />
     </div>
   )
 }

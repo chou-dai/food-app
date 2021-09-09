@@ -5,3 +5,5 @@ export {default as AddButton} from './AddButton';
 export {default as BackButton} from './BackButton';
 export {default as PhotoButton} from './PhotoButton';
 export {default as EditButton} from './EditButton';
+export {default as MoreVertButton} from './MoreVertButton';
+export {default as MoreMenu} from './MoreMenu';
