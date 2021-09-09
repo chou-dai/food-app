@@ -1,16 +1,25 @@
-import { useRouter } from 'next/router'
-import React from 'react'
+import { useRouter } from 'next/router';
+import React, { useState } from 'react';
 import Link from 'next/link';
-import { calcStar } from '../../../../lib/reviewLib';
+import { calcStar, getReviewList } from '../../../../lib/reviewLib';
 import { getMenuDetail } from '../../../../lib/menuLib';
-import MenuTopImage from '../../../../components/Menus/MenuTopImage';
-import Rating from '@material-ui/lab/Rating';
+import { MenuBar, MenuTopImage } from '../../../../components/Menus';
 import { EditButton } from '../../../../components/Uikit';
+import { ReviewCardList, ReviewForm } from '../../../../components/Reviews';
 
-const MenuDetail = ({ data }) => {
+
+const MenuDetail = ({ menuData, reviewData }) => {
   const router = useRouter();
   const {restId} = router.query;
   const {menuId} = router.query;
+  const [open, setOpen] = useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   calcStar(restId, menuId);
 
@@ -24,33 +33,22 @@ const MenuDetail = ({ data }) => {
       window.alert("パスワードが違います")
     }
   }
-
-  const save = () => {
-    window.alert("レビュー投稿処理");
-  }
   
   return (
       <div>
         <section className='center'>
-          <div>
-            <MenuTopImage restId={restId} images={data.images.length === 0 ? [data.noImage] : data.images} />
-            <div className="fixed top-0 mt-52 h-24 bg-white w-full overflow-hidden px-3">
-              <div className="mr-14 text-left overflow-hidden pl-3">
-                <Rating className="my-2" name="read-only" value={data.review.star} readOnly />
-                <h1 className="font-semibold text-xl">{data.name}</h1>
-                <p>{data.price}円</p>
-              </div>
+          <div className="absolute z-10">
+            <MenuTopImage restId={restId} images={menuData.images.length === 0 ? [menuData.noImage] : menuData.images} />
+            <div className="fixed top-0 mt-52 h-24 bg-white w-full overflow-hidden px-3 border-2">
+              <MenuBar star={menuData.review.star} name={menuData.name} price={menuData.price} />
               <div className="absolute right-2 bottom-1">
-                <EditButton title="レビュー投稿" onClick={save} />
+                <EditButton title="レビュー投稿" onClick={handleClickOpen} />
+                <ReviewForm open={open} onClick={handleClose} restId={restId} menuId="" />
               </div>
             </div>
           </div>
           <div style={{"margin-top":"19rem"}} />
-          <div className="mb-3">
-            <Link href={`/restaurant/${restId}/`}>
-              <a className="inline-block align-baseline font-bold text-sm text-purple-500 hover:text-purple-800">メニューページ</a>
-            </Link>
-          </div>
+          <ReviewCardList data={reviewData} />
           <div>
             <a 
               className="cursor-pointer inline-block align-baseline font-bold text-sm text-red-500 hover:text-red-800"
@@ -65,10 +63,12 @@ const MenuDetail = ({ data }) => {
 }
 
 export const getServerSideProps = async({ params }) => {
-  const data = await getMenuDetail(params.restId, params.menuId);
+  const menuData = await getMenuDetail(params.restId, params.menuId);
+  const reviewData = await getReviewList(params.restId, params.menuId)
   return {
     props: {
-      data,
+      menuData,
+      reviewData,
     }
   }
 }

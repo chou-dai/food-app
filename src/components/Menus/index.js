@@ -4,3 +4,4 @@ export {default as MenuTopImage} from './MenuTopImage';
 export {default as MenuForm} from './MenuForm';
 export {default as MenuCardList} from './MenuCardList';
 export {default as MenuSearch} from './MenuSearch';
+export {default as MenuBar} from './MenuBar';
