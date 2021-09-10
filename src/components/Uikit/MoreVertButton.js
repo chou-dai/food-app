@@ -14,6 +14,10 @@ const MoreVertButton = (props) => {
         "right": props.rigtht,
       }}
       className="absolute z-1"
+      aria-label="More"
+      aria-owns={props.open ? 'long-menu' : undefined}
+      aria-haspopup="true"
+      onClick={props.onClick}
     >
       <MoreVertIcon className="text-3xl" />
     </IconButton>

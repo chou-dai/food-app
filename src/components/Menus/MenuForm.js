@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -6,11 +6,11 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import TextField from '@material-ui/core/TextField';
 import InputAdornment from '@material-ui/core/InputAdornment';
-import { firstSaveMenu } from '../../lib/menuLib';
+import { editSaveMenu, firstSaveMenu } from '../../lib/menuLib';
 
 const MenuForm = (props) => {
-  const [name, setName] = useState(""),
-        [price, setPrice] = useState(""),
+  const [name, setName] = useState(props.name),
+        [price, setPrice] = useState(props.price),
         [nameError, setNameError] = useState(false),
         [priceError, setPriceError] = useState(false);
   const images = [];
@@ -27,7 +27,7 @@ const MenuForm = (props) => {
   const inputPrice = useCallback((event) => {
     setPrice(event.target.value);
     setPriceError(false);
-  }, [setPrice])
+  }, [setPrice]);
 
   const check = () => {
     let errorCount = 0;
@@ -49,8 +49,13 @@ const MenuForm = (props) => {
     }
     const pw = window.prompt("パスワードを入力");
     if(pw === '0011'){
-      await firstSaveMenu(props.menuId, props.restId, name, price, images, noImage, review);
-      window.alert("メニューを追加しました");
+      if(props.menuId === "") {
+        await firstSaveMenu(props.menuId, props.restId, name, price, images, noImage, review);
+        window.alert("メニューを追加しました");
+      } else {
+        await editSaveMenu(props.menuId, props.restId, name, price);
+        window.alert("メニュー情報を変更しました")
+      }
       window.location.reload();
     } else if(pw === null) {
       return;

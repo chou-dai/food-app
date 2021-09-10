@@ -3,10 +3,29 @@ import Link from 'next/link';
 import Image from 'material-ui-image';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Rating from '@material-ui/lab/Rating';
-import { MoreVertButton } from '../Uikit';
+import { MoreMenu, MoreVertButton } from '../Uikit';
+import { MenuForm } from '.';
 
 
 const MenuCard = (props) => {
+  const [anchorEl, setAnchorEl] = useState(null),
+        [open, setOpen] = useState(false);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+  const handleClickClose = () => {
+    setOpen(false);
+  };
+  const handleDelete = () => {
+    window.alert("削除処理")
+  };
+
   const images = (props.images.length > 0) ? props.images : [props.noImage];
 
   return (
@@ -36,13 +55,15 @@ const MenuCard = (props) => {
                 readOnly
               />
             </div>
-            <div className="text-gray-800 font-bold text-xl">{props.menuName}</div>
+            <h1 className="text-gray-800 font-bold text-xl">{props.menuName}</h1>
             <p className="text-gray-700 text-base">{props.price}円</p>
           </div>
           
         </div>
       </Link>
-      <MoreVertButton size="50px" bottom="43px" rigtht="-7px" />
+      <MoreVertButton size="50px" bottom="43px" rigtht="-7px" open={Boolean(anchorEl)} onClick={handleClick} />
+      <MoreMenu anchorEl={anchorEl} handleClose={handleClose} handleClickOpen={handleClickOpen} handleDelete={handleDelete} />
+      <MenuForm open={open} restId={props.restId} menuId={props.menuId} name={props.menuName} price={props.price} onClick={handleClickClose} />
     </div>
   )
 }

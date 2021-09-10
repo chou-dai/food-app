@@ -43,7 +43,7 @@ const MenuDetail = ({ menuData, reviewData }) => {
               <MenuBar star={menuData.review.star} name={menuData.name} price={menuData.price} />
               <div className="absolute right-2 bottom-1">
                 <EditButton title="レビュー投稿" onClick={handleClickOpen} />
-                <ReviewForm open={open} onClick={handleClose} restId={restId} menuId="" />
+                <ReviewForm open={open} reviewId="" restId={restId} menuId={menuId} onClick={handleClose} />
               </div>
             </div>
           </div>

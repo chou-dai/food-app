@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
-import { RestaurantCard, RestForm } from '../../components/Restaurants';
+import { RestCardList, RestForm } from '../../components/Restaurants';
 import { getRestaurantList } from '../../lib/restaurantLib';
 import Button from '@material-ui/core/Button';
 
@@ -27,21 +27,10 @@ const RestaurantList = ({ data }) => {
         <Button variant="contained" color="primary" style={{"padding": "0.875rem 5rem"}} onClick={handleClickOpen}>
           店舗を追加
         </Button>
-        <RestForm open={open} onClick={handleClose} restId="" />
+        <RestForm open={open} restId="" name="" place="" pref={null} onClick={handleClose} />
         </div>
         <div className='module-spacer--small' />
-        <div className='justify-center'>
-          <div className='flex flex-wrap'>
-            {data.length > 0 && (
-              data.map(rest => (
-                <RestaurantCard
-                  key={rest.id} restId={rest.id} restName={rest.name}
-                  images={rest.images} noImage={rest.noImage}
-                />
-              ))
-            )}
-          </div>
-        </div>
+        <RestCardList data={data} />
         <div className='module-spacer--small' />
         <div className='module-spacer--small' />
       </section>

@@ -33,17 +33,18 @@ const RestaurantDetail = ({ restData, menuData }) => {
   return (
     <div>
       <section className='center'>
-        <RestTopImage name={restData.name} image={restData.images.length === 0 ? restData.noImage : restData.images[0]} />
+        <RestTopImage name={restData.name} place={restData.place} pref={restData.pref}
+          image={restData.images.length === 0 ? restData.noImage : restData.images[0]} />
         <div className="mt-56 relative z-10 bg-white" style={{"border-radius":"40px 40px 0 0"}}>
           <div className="w-full py-2 bg-white" style={{"border-radius":"40px 40px 0 0"}}>
-            <h1> 店舗詳細: {restData.name}</h1>
-            <h2 className="mt-2">住所：{restData.address === "" ? "未登録":restData.address}</h2>
+            <h1>{restData.name} {restData.place}</h1>
+            <h2 className="mt-2">{restData.pref}</h2>
           </div>
           <MenuSearch />
           <MenuCardList data={menuData} restId={restId} />
         </div>
         <AddButton onClick={handleClickOpen} />
-        <MenuForm open={open} onClick={handleClose} restId={restId} menuId="" />
+        <MenuForm open={open} onClick={handleClose} restId={restId} menuId="" name="" price="" />
         <div className='module-spacer--small' />
         <div className='module-spacer--small' />
         <div>

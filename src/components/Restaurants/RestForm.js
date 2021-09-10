@@ -6,12 +6,12 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
-import { firstSaveRestaurant } from '../../lib/restaurantLib';
+import { editSaveRestaurant, firstSaveRestaurant } from '../../lib/restaurantLib';
 
 const RestForm = (props) => {
-  const [name, setName] = useState(""),
-        [place, setPlace] = useState(""),
-        [pref, setPref] = useState(null),
+  const [name, setName] = useState(props.name),
+        [place, setPlace] = useState(props.place),
+        [pref, setPref] = useState(props.pref),
         [nameError, setNameError] = useState(false),
         [placeError, setPlaceError] = useState(false),
         [prefError, setPrefError] = useState(false);
@@ -59,8 +59,13 @@ const RestForm = (props) => {
     }
     const pw = window.prompt("パスワードを入力");
     if(pw === '0011'){
-      // await firstSaveRestaurant(props.restId, name, place, pref, image, noImage);
-      window.alert("メニューを追加しました");
+      if(props.restId === "") {
+        // await firstSaveRestaurant(props.restId, name, place, pref, image, noImage);
+        window.alert("店舗を追加しました");
+      } else {
+        await editSaveRestaurant(props.restId, name, place, pref);
+        window.alert("店舗情報を変更しました")
+      }
       window.location.reload();
     } else if(pw === null) {
       return;
@@ -103,6 +108,7 @@ const RestForm = (props) => {
           getOptionLabel={(option) => option}
           style={{"width":"100%"}}
           onChange={inputPref}
+          defaultValue={props.pref}
           renderInput={(params) => 
             <TextField 
               error={prefError}
