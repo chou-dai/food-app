@@ -77,7 +77,7 @@ const RestChangeImage = (props) => {
       <DialogContent>
        <h1>※画像を変更すると元の画像が破棄されます。</h1>
       </DialogContent>
-      <DialogActions className="center" className="relative w-full" style={{"padding":"16px 24px"}}>
+      <DialogActions className="center relative w-full" style={{"padding":"16px 24px"}}>
         <Button color="primary" component="label" variant="contained" className="w-4/5 py-2 mx-auto">
           画像を変更
           <input type='file' className="hidden" accept="image/*" onChange={(event) => upload(event)}/>
