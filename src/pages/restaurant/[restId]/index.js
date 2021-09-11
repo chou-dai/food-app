@@ -18,23 +18,12 @@ const RestaurantDetail = ({ restData, menuData }) => {
   const handleClose = () => {
     setOpen(false);
   };
-  const deleteRest = () => {
-    const pw = window.prompt("パスワードを入力");
-    if(pw === '0011'){
-      deleteRestaurant(restId)
-      window.alert("削除に成功しました")
-    } else if(pw === null) {
-      return;
-    } else {
-      window.alert("パスワードが違います")
-    }
-  }
   
   return (
     <div>
       <section className='center'>
-        <RestTopImage name={restData.name} place={restData.place} pref={restData.pref}
-          image={restData.images.length === 0 ? restData.noImage : restData.images[0]} />
+        <RestTopImage name={restData.name} place={restData.place} pref={restData.pref} restId={restId}
+          image={restData.image === "" ? restData.noImage : restData.image} />
         <div className="mt-56 relative z-10 bg-white" style={{"border-radius":"40px 40px 0 0"}}>
           <div className="w-full py-2 bg-white" style={{"border-radius":"40px 40px 0 0"}}>
             <h1>{restData.name} {restData.place}</h1>
@@ -45,14 +34,6 @@ const RestaurantDetail = ({ restData, menuData }) => {
         </div>
         <AddButton onClick={handleClickOpen} />
         <MenuForm open={open} onClick={handleClose} restId={restId} menuId="" name="" price="" />
-        <div className='module-spacer--small' />
-        <div className='module-spacer--small' />
-        <div>
-          <a 
-            className="cursor-pointer inline-block align-baseline font-bold text-sm text-red-500 hover:text-red-800"
-            onClick={deleteRest}
-          >店舗を削除</a>
-        </div>
         <div className='module-spacer--small' />
         <div className='module-spacer--small' />
       </section>

@@ -1,11 +1,9 @@
-import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import { RestCardList, RestForm } from '../../components/Restaurants';
 import { getRestaurantList } from '../../lib/restaurantLib';
 import Button from '@material-ui/core/Button';
 
 const RestaurantList = ({ data }) => {
-  const router = useRouter();
   const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {

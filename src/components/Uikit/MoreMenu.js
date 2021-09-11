@@ -7,7 +7,7 @@ const MoreMenu = (props) => {
   return (
     <div>
       <Menu
-        id="simple-menu"
+        id="basic-menu"
         anchorEl={props.anchorEl}
         keepMounted
         open={Boolean(props.anchorEl)}

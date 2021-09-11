@@ -6,7 +6,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import TextField from '@material-ui/core/TextField';
 import Rating from '@material-ui/lab/Rating';
-import { firstSaveReview } from '../../lib/reviewLib';
+import { calcStar, firstSaveReview } from '../../lib/reviewLib';
 
 
 const ReviewForm = (props) => {
@@ -27,9 +27,12 @@ const ReviewForm = (props) => {
     }
     const pw = window.prompt("パスワードを入力");
     if(pw === '0011'){
-      await firstSaveReview(props.reviewId, props.restId, props.menuId, star, comment);
-      window.alert("レビューを投稿しました");
-      window.location.reload();
+      await firstSaveReview(props.reviewId, props.restId, props.menuId, star, comment)
+        .then(async() => {
+          await calcStar(props.restId, props.menuId);
+          window.alert("レビューを投稿しました");
+          window.location.reload();
+        })
     } else if(pw === null) {
       return;
     } else {

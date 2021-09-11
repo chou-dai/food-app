@@ -3,3 +3,4 @@ export {default as RestCardList} from './RestCardList';
 export {default as RestImageButton} from './RestImageButton';
 export {default as RestTopImage} from './RestTopImage';
 export {default as RestForm} from './RestForm';
+export {default as RestChangeImage} from './RestChangeImage';

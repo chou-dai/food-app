@@ -37,10 +37,9 @@ export const editSaveRestaurant = (id, name, place, pref) => {
     })
 }
 
-
-export const saveRestaurantImage = async(id, images) => {
+export const saveRestaurantImage = async(id, image) => {
   const data = {
-    images: images,
+    image: image,
   }
   return await restaurantsRef.doc(id).set(data, {merge: true})
     .then(() => {
@@ -50,10 +49,8 @@ export const saveRestaurantImage = async(id, images) => {
     })
 }
 
-
 export const deleteRestaurant = (restId) => {
 }
-
 
 export const getRestaurantList = async() => {
   const data = [];
@@ -66,7 +63,6 @@ export const getRestaurantList = async() => {
     })
   return data;
 }
-
 
 export const getRestaurantDetail = async(restId) => {
   let data = null;

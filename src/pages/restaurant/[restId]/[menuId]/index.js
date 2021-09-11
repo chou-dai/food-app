@@ -20,45 +20,27 @@ const MenuDetail = ({ menuData, reviewData }) => {
   const handleClose = () => {
     setOpen(false);
   };
-
   calcStar(restId, menuId);
-
-  const deleteRest = () => {
-    const pw = window.prompt("パスワードを入力");
-    if(pw === '0011'){
-      window.alert("削除に成功しました")
-    } else if(pw === null) {
-      return;
-    } else {
-      window.alert("パスワードが違います")
-    }
-  }
   
   return (
-      <div>
-        <section className='center'>
-          <div className="absolute z-10">
-            <MenuTopImage restId={restId} images={menuData.images.length === 0 ? [menuData.noImage] : menuData.images} />
-            <div className="fixed top-0 mt-52 h-24 bg-white w-full overflow-hidden px-3 border-2">
-              <MenuBar star={menuData.review.star} name={menuData.name} price={menuData.price} />
-              <div className="absolute right-2 bottom-1">
-                <EditButton title="レビュー投稿" onClick={handleClickOpen} />
-                <ReviewForm open={open} reviewId="" restId={restId} menuId={menuId} onClick={handleClose} />
-              </div>
+    <div>
+      <section className='center'>
+        <div className="absolute z-10">
+          <MenuTopImage restId={restId} images={menuData.images.length === 0 ? [menuData.noImage] : menuData.images} />
+          <div className="fixed top-0 mt-52 h-24 bg-white w-full overflow-hidden px-3 border-2">
+            <MenuBar star={menuData.review.star} name={menuData.name} price={menuData.price} />
+            <div className="absolute right-2 bottom-1">
+              <EditButton title="レビュー投稿" onClick={handleClickOpen} />
+              <ReviewForm open={open} reviewId="" restId={restId} menuId={menuId} onClick={handleClose} />
             </div>
           </div>
-          <div style={{"margin-top":"19rem"}} />
-          <ReviewCardList data={reviewData} />
-          <div>
-            <a 
-              className="cursor-pointer inline-block align-baseline font-bold text-sm text-red-500 hover:text-red-800"
-              onClick={deleteRest}
-            >店舗を削除</a>
-          </div>
-          <div className='module-spacer--small' />
-          <div className='module-spacer--small' />
-        </section>
-      </div>
+        </div>
+        <div style={{"margin-top":"19rem"}} />
+        <ReviewCardList data={reviewData} />
+        <div className='module-spacer--small' />
+        <div className='module-spacer--small' />
+      </section>
+    </div>
   )
 }
 

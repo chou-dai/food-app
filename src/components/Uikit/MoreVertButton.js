@@ -14,8 +14,10 @@ const MoreVertButton = (props) => {
         "right": props.rigtht,
       }}
       className="absolute z-1"
-      aria-label="More"
-      aria-owns={props.open ? 'long-menu' : undefined}
+      aria-label="more"
+      id="long-button"
+      aria-controls="long-menu"
+      aria-expanded={props.open ? 'true' : undefined}
       aria-haspopup="true"
       onClick={props.onClick}
     >

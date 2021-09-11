@@ -9,7 +9,7 @@ const RestCardList = (props) => {
           props.data.map(rest => (
             <RestCard
               key={rest.id} restId={rest.id} name={rest.name} place={rest.place}
-              pref={rest.pref} images={rest.images} noImage={rest.noImage}
+              pref={rest.pref} image={rest.image} noImage={rest.noImage}
             />
           ))
         )}
