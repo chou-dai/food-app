@@ -1,9 +1,19 @@
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useRef, useState } from 'react'
 import SortIcon from '@material-ui/icons/Sort';
 import SearchIcon from '@material-ui/icons/Search';
+import MenuFilter from './MenuFilter';
 
 const MenuSearch = () => {
   const [searchText, setSearchText] = useState("");
+  const [anchorEl, setAnchorEl] = useState(null),
+        [open, setOpen] = useState(false);
+        
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   const inpuText = useCallback((event) => {
     setSearchText(event.target.value)
@@ -28,9 +38,10 @@ const MenuSearch = () => {
           type="search" name="search" className="appearance-none px-2 py-1 w-full focus:outline-none" placeholder="検索"
           value={searchText} onChange={inpuText} onKeyPress={searchSubmit} />
       </form>
-      <button className="border-2 items-center justify-center px-2 bg-white" onClick={sort}>
+      <button className="border-2 items-center justify-center px-2 bg-white" onClick={handleClick}>
         <SortIcon className=" text-gray-500" />
       </button>
+      <MenuFilter anchorEl={anchorEl} handleClose={handleClose}/>
     </div>
   )
 }

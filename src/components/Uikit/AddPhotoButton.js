@@ -3,7 +3,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 import Fab from '@material-ui/core/Fab';
 import AddPhotoAlternateOutlinedIcon from '@material-ui/icons/AddPhotoAlternateOutlined';
 
-const PhotoButton = (props) => {
+const AddPhotoButton = (props) => {
   return (
     <Tooltip title={props.title} aria-label="change" onClick={props.onClick}>
       <Fab
@@ -15,4 +15,4 @@ const PhotoButton = (props) => {
   )
 }
 
-export default PhotoButton
+export default AddPhotoButton

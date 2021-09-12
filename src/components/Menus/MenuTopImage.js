@@ -1,13 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import Swiper from "react-id-swiper";
 import 'swiper/css/swiper.css';
 import Image from 'material-ui-image';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import { BackButton, PhotoButton } from "../Uikit";
+import { BackButton, PhotoListButton } from "../Uikit";
+import { MenuAddImage } from ".";
 
 const MenuTopImage = (props) => {
-  const images = props.images;
+  const [open, setOpen] = useState(false);
 
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
   const params = {
     pagination: {
       el: '.swiper-pagination',
@@ -21,9 +28,7 @@ const MenuTopImage = (props) => {
     spaceBetween: 10,
   }
 
-  const addPhoto = () => {
-    window.alert("画像追加処理")
-  }
+  const images = props.images.length === 0 ? props.noImage : props.images;
 
   return (
     <div className="fixed top-0 center content-center h-52 w-full rounded-md overflow-hidden shadow-md bg-white">
@@ -42,7 +47,8 @@ const MenuTopImage = (props) => {
         ))}
       </Swiper>
       <BackButton link={`/restaurant/${props.restId}/`} />
-      <PhotoButton title="画像追加" onClick={addPhoto} />
+      <PhotoListButton title="画像一覧" onClick={handleClickOpen} />
+      <MenuAddImage open={open} restId={props.restId} menuId={props.menuId} images={props.images} onClick={handleClose} />
     </div>
   )
 }

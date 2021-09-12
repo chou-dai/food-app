@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Image from 'material-ui-image';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import BackButton from '../Uikit/BackButton';
-import { PhotoButton } from '../Uikit';
+import { AddPhotoButton } from '../Uikit';
 import PlaceIcon from '@material-ui/icons/Place';
 import { RestChangeImage } from '.';
 
@@ -15,9 +15,6 @@ const RestTopImage = (props) => {
   const handleClose = () => {
     setOpen(false);
   };
-  const changeImage = () => {
-    window.alert("画像変更処理")
-  }
 
   return (
     <div className="fixed top-0 content-center w-full shadow-md bg-white" style={{"height":"17.5rem"}}>
@@ -35,7 +32,7 @@ const RestTopImage = (props) => {
         </div>
       </div>
       <BackButton link={"/restaurant/"} />
-      <PhotoButton title="画像変更" onClick={handleClickOpen} />
+      <AddPhotoButton title="画像変更" onClick={handleClickOpen} />
       <RestChangeImage open={open} restId={props.restId} onClick={handleClose} />
     </div>
   )

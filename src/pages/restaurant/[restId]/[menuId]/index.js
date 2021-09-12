@@ -26,7 +26,7 @@ const MenuDetail = ({ menuData, reviewData }) => {
     <div>
       <section className='center'>
         <div className="absolute z-10">
-          <MenuTopImage restId={restId} images={menuData.images.length === 0 ? [menuData.noImage] : menuData.images} />
+          <MenuTopImage restId={restId} menuId={menuId} images={menuData.images} noImage={[menuData.noImage]} />
           <div className="fixed top-0 mt-52 h-24 bg-white w-full overflow-hidden px-3 border-2">
             <MenuBar star={menuData.review.star} name={menuData.name} price={menuData.price} />
             <div className="absolute right-2 bottom-1">

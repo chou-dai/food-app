@@ -60,7 +60,7 @@ const RestForm = (props) => {
     const pw = window.prompt("パスワードを入力");
     if(pw === '0011'){
       if(props.restId === "") {
-        // await firstSaveRestaurant(props.restId, name, place, pref, image, noImage);
+        await firstSaveRestaurant(props.restId, name, place, pref, image, noImage);
         window.alert("店舗を追加しました");
       } else {
         await editSaveRestaurant(props.restId, name, place, pref);

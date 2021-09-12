@@ -5,3 +5,5 @@ export {default as MenuForm} from './MenuForm';
 export {default as MenuCardList} from './MenuCardList';
 export {default as MenuSearch} from './MenuSearch';
 export {default as MenuBar} from './MenuBar';
+export {default as MenuAddImage} from './MenuAddImage';
+export {default as MenuFilter} from './MenuFilter';

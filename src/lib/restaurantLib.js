@@ -3,11 +3,12 @@ import { db } from '../firebase';
 const restaurantsRef = db.collection('restaurants');
 
 
-export const firstSaveRestaurant = (id, name, address, images, noImage) => {
+export const firstSaveRestaurant = (id, name, place, pref, image, noImage) => {
   const data = {
     name: name,
-    address: address,
-    images: images,
+    place: place,
+    pref: pref,
+    image: image,
     noImage: noImage
   }
   if(id === "") {
