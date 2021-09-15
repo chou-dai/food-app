@@ -1,4 +1,4 @@
-import { db } from '../firebase';
+import { db, storage } from '../firebase';
 
 const restaurantsRef = db.collection('restaurants');
 
@@ -50,7 +50,12 @@ export const saveRestaurantImage = async(id, image) => {
     })
 }
 
-export const deleteRestaurant = (restId) => {
+export const deleteRestaurant = async(id) => {
+  // return await restaurantsRef.doc(id).delete()
+  //   .then(async() => {
+  //     await storage.ref('images').child(id).delete();
+  //   })
+  return await storage.ref('images').ref(id).delete();
 }
 
 export const getRestaurantList = async() => {

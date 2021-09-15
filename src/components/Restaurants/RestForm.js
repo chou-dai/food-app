@@ -48,7 +48,6 @@ const RestForm = (props) => {
       setPrefError(true);
       errorCount += 1;
     }
-    console.log(errorCount);
     return errorCount;
   }
 
@@ -75,7 +74,6 @@ const RestForm = (props) => {
   }
 
   const save = () => {
-    console.log(pref);
     if (check() === 0) {
       fireSave();
     } else {

@@ -71,7 +71,7 @@ export const saveMenuReview = async(id, restId, review) => {
 export const getMenuList = async(restId) => {
   const data = [];
   const menusRef = restRef.doc(restId).collection('menus');
-  await menusRef.get()
+  await menusRef.orderBy('review.star', 'desc').get()
     .then(snapshots => {
       snapshots.forEach(snapshot => {
         const tmp = snapshot.data();
