@@ -1,5 +1,13 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+## 概要
+
+React，Next.jsを用いたアプリケーション
+
+https://food-app-kappa.vercel.app/
+
+
+
 ## Getting Started
 
 First, run the development server:
